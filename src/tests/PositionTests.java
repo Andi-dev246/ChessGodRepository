@@ -66,6 +66,6 @@ class PositionTests {
 		String expectedMessage = "This Position has more than two coordinates.";
 		String actualMessage = exception.getMessage();
 		
-		assertTrue(actualMessage.contains(expectedMessage));
+		assertTrue(actualMessage.equals(expectedMessage));
 	}
 }
