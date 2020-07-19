@@ -53,7 +53,7 @@ class PositionTests {
 		String expectedMessage = "This Position is invalid.";
 		String actualMessage = exception.getMessage();
 		
-		assertTrue(actualMessage.contains(expectedMessage));
+		assertTrue(actualMessage.equals(expectedMessage));
 	}
 	
 	@Test
