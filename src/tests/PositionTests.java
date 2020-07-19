@@ -40,6 +40,12 @@ class PositionTests {
 		assertArrayEquals(new int[] { 1, 2 }, position4.getIntegerPosition());
 	}
 	
+	@Test
+	void createPositionFromStringTest5() {
+		Position position  = Position.createPositionFromString("g5");
+
+		assertArrayEquals(new int[] { 4, 6 }, position.getIntegerPosition());
+	}
 	
 	@Test
 	void PositionIsValidPositionTest() {
