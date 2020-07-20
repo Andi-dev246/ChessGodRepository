@@ -1,5 +1,7 @@
 package pieces;
 
+import java.util.ArrayList;
+
 import board.Position;
 import player.Color;
 
@@ -30,7 +32,7 @@ public final class Knight extends Piece {
 	}
 
 	@Override
-	public Position[] drawPath(Position start, Position end) {
+	public ArrayList<Position> drawPath(Position start, Position end) {
 		// TODO Auto-generated method stub
 		return null;
 	}

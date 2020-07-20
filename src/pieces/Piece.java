@@ -1,6 +1,7 @@
 package pieces;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 import board.Position;
 import player.Color;
@@ -36,6 +37,8 @@ public abstract class Piece implements Serializable {
 	
 	public abstract boolean isValidPath(Position start, Position end);
 	
-	public abstract Position[] drawPath(Position start, Position end);
+	public ArrayList<Position> drawPath(Position start, Position end) {
+		return null; 
+	}
 	
 }

@@ -28,11 +28,6 @@ public final class Bishop extends Piece {
 		
 		return differenceInX_Coordinates == differenceInY_Coordinates;
 	}
-
-	@Override
-	public Position[] drawPath(Position start, Position end) {
-		return null;
-	}
 	
 	@Override
 	public String toString() {

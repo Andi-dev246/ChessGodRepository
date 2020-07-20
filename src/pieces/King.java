@@ -28,12 +28,6 @@ public final class King extends Piece{
 
 		return (differenceInX_Coordinates <= 1) && (differenceInY_Coordinates <= 1);
 	}
-
-	@Override
-	public Position[] drawPath(Position start, Position end) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	
 	@Override
 	public String toString() {
