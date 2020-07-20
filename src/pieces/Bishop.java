@@ -21,12 +21,12 @@ public final class Bishop extends Piece {
 	}
 	@Override
 	public boolean isValidPath(Position start, Position end) {
-		int differenceInX_Coordinates, differenceInY_Coordinates;
+		int rowDifference, columnDifference;
 		
-		differenceInX_Coordinates = Math.abs(end.getPositionAsInteger()[0] - start.getPositionAsInteger()[0]);
-		differenceInY_Coordinates = Math.abs(end.getPositionAsInteger()[1] - start.getPositionAsInteger()[1]);
+		rowDifference = Math.abs(end.getPositionAsInteger()[0] - start.getPositionAsInteger()[0]);
+		columnDifference = Math.abs(end.getPositionAsInteger()[1] - start.getPositionAsInteger()[1]);
 		
-		return differenceInX_Coordinates == differenceInY_Coordinates;
+		return rowDifference == columnDifference;
 	}
 	
 	@Override
