@@ -104,6 +104,26 @@ public class Board implements Serializable, Iterable<Tile> {
 		return this.board[position.getPositionAsInteger()[0]][position.getPositionAsInteger()[1]].getPiece();
 	}
 
+	public void printWhitePerspective() {
+		for (int i = 0; i < 8; i++) {
+			for (int j = 0; j < 8; j++) {
+				System.out.printf("%-6s", this.board[7 - i][7 - j].toString());
+			}
+			System.out.println();
+			System.out.println();
+		}
+	}
+
+	public void printBlackPerspective() {
+		for (int i = 0; i < 8; i++) {
+			for (int j = 0; j < 8; j++) {
+				System.out.printf("%-6s", this.board[i][j].toString());
+			}
+			System.out.println();
+			System.out.println();
+		}
+	}
+
 	public void saveBoard() {
 		try (FileOutputStream fs = new FileOutputStream("ChessGod.data")) {
 
@@ -137,27 +157,6 @@ public class Board implements Serializable, Iterable<Tile> {
 		return Board.createDefaultBoard();
 	}
 
-	public void printWhitePerspective() {
-		for (int i = 0; i < 8; i++) {
-			for (int j = 0; j < 8; j++) {
-				System.out.printf("%-6s", this.board[7 - i][7 - j].toString());
-			}
-			System.out.println();
-			System.out.println();
-		}
-	}
-
-	public void printBlackPerspective() {
-		for (int i = 0; i < 8; i++) {
-			for (int j = 0; j < 8; j++) {
-				System.out.printf("%-6s", this.board[i][j].toString());
-			}
-			System.out.println();
-			System.out.println();
-		}
-	}
-
-
 	@Override
 	public Iterator<Tile> iterator() {
 
@@ -165,13 +164,10 @@ public class Board implements Serializable, Iterable<Tile> {
 
 		for (int i = 0; i < 8; i++) {
 			for (int j = 0; j < 8; j++) {
-				if(board[i][j].isEmpty() != true)
-				myList.add(board[i][j]);
+				if (board[i][j].isEmpty() != true)
+					myList.add(board[i][j]);
 			}
 		}
-		
 		return myList.listIterator();
-
 	}
-
 }

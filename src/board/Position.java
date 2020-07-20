@@ -43,6 +43,11 @@ public class Position implements Serializable{
 			 return new int[] {firstCoodinateFromString-1, Character.compare(secondCoordinateFromString,'a')};
 	}
 	
+	private static void exceptionPositionDoesNotHaveTwoCoordinates(String position) throws Exception {
+		if(2 != position.length())
+			throw new InvalidPositionException("This Position does not have two unique coordinates.");
+	}
+	
 	private static String intToString(int[] position) {
 		char firstCoordinateFromInt = (char)(position[1] + 97);			// The char 'a' has the int value 97
 		char secondCoordinateFromInt = (char)(position[0] + '0' + 1);
@@ -72,8 +77,4 @@ public class Position implements Serializable{
 	}
 	
 	
-	private static void exceptionPositionDoesNotHaveTwoCoordinates(String position) throws Exception {
-		if(2 != position.length())
-			throw new InvalidPositionException("This Position does not have two unique coordinates.");
-	}
 }
