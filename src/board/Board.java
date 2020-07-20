@@ -97,11 +97,11 @@ public class Board implements Serializable, Iterable<Tile> {
 	}
 
 	public void setPiece(Piece piece, Position position) {
-		board[position.getIntegerPosition()[0]][position.getIntegerPosition()[1]].setPiece(piece);
+		board[position.getPositionAsInteger()[0]][position.getPositionAsInteger()[1]].setPiece(piece);
 	}
 
 	public Piece getPiece(Position position) {
-		return this.board[position.getIntegerPosition()[0]][position.getIntegerPosition()[1]].getPiece();
+		return this.board[position.getPositionAsInteger()[0]][position.getPositionAsInteger()[1]].getPiece();
 	}
 
 	public void saveBoard() {

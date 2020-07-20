@@ -43,8 +43,19 @@ public class Position implements Serializable{
 			 return new int[] {firstCoodinateFromString-1, Character.compare(secondCoordinateFromString,'a')};
 	}
 	
-	public int[] getIntegerPosition() {
+	private static String intToString(int[] position) {
+		char firstCoordinateFromInt = (char)(position[1] + 97);
+		char secondCoordinateFromInt = (char)(position[0] + '0' + 1);
+		
+		return String.valueOf(firstCoordinateFromInt) + String.valueOf(secondCoordinateFromInt);
+	}
+	
+	public int[] getPositionAsInteger() {
 		return this.position;
+	}
+	
+	public String getPositionAsString() {
+		return intToString(this.position);
 	}
 	
 	public static void exceptionPositionIsInvalid(int [] position) throws Exception {

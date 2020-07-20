@@ -23,8 +23,8 @@ public final class Queen extends Piece {
 	public boolean isValidPath(Position start, Position end) {
 		int differenceInX_Coordinates, differenceInY_Coordinates;
 
-		differenceInX_Coordinates = Math.abs(end.getIntegerPosition()[0] - start.getIntegerPosition()[0]);
-		differenceInY_Coordinates = Math.abs(end.getIntegerPosition()[1] - start.getIntegerPosition()[1]);
+		differenceInX_Coordinates = Math.abs(end.getPositionAsInteger()[0] - start.getPositionAsInteger()[0]);
+		differenceInY_Coordinates = Math.abs(end.getPositionAsInteger()[1] - start.getPositionAsInteger()[1]);
 
 		boolean movesLikeARook = 	(differenceInX_Coordinates == 0 || differenceInY_Coordinates == 0);
 		
