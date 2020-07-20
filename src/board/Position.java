@@ -44,7 +44,7 @@ public class Position implements Serializable{
 	}
 	
 	private static String intToString(int[] position) {
-		char firstCoordinateFromInt = (char)(position[1] + 97);
+		char firstCoordinateFromInt = (char)(position[1] + 97);			// The char 'a' has the int value 97
 		char secondCoordinateFromInt = (char)(position[0] + '0' + 1);
 		
 		return String.valueOf(firstCoordinateFromInt) + String.valueOf(secondCoordinateFromInt);
