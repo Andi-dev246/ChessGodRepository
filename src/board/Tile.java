@@ -12,18 +12,24 @@ public class Tile implements Serializable {
 	private Color color;
 	private Piece piece;
 	
-	private Tile (Position position, Color color, Piece piece) {
+	private Tile (Position position, Piece piece) {
 		this.setPosition(position);
-		this.color = color;
 		this.setPiece(piece);
+		
+		int sum = position.getPositionAsInteger()[0] + position.getPositionAsInteger()[1];
+		if(sum %2 == 0) {
+			this.color = Color.BLACK;
+		} else {
+			this.color = Color.WHITE;
+		}
 	}
 	
 	public static Tile createEmptyTile (Position position) {
-		return new Tile(position, null, null);
+		return new Tile(position, null);
 	}
 	
 	public static Tile createTakenTile (Position position, Piece piece) {
-		return new Tile(position, null, piece);
+		return new Tile(position, piece);
 	}
 	
 	public Position getPosition() {
