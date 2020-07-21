@@ -1,6 +1,9 @@
 package tests;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
@@ -81,5 +84,43 @@ class QueenTests {
 		Position end = Position.createPositionFromString("c2");
 		
 		assertFalse(whiteQueen.isValidPath(start, end));
+	}
+	
+	@Test
+	void upLeftDrawPath() {
+		Position start = Position.createPositionFromInt(new int[] {2,3});
+		Position end = 	 Position.createPositionFromInt(new int[] {0,5});
+		
+		ArrayList<Position> myList = new ArrayList<Position>();
+		
+		myList.add(Position.createPositionFromInt(new int[] {1,4}));
+		
+		assertTrue(whiteQueen.drawPath(start,end).equals(myList));
+	}
+	
+	@Test
+	void upRightDrawPath() {
+		Position start = Position.createPositionFromString("a1");
+		Position end = Position.createPositionFromString("d4");
+		
+		ArrayList<Position> myList = new ArrayList<Position>();
+		
+		myList.add(Position.createPositionFromString("b2"));
+		myList.add(Position.createPositionFromString("c3"));
+		
+		assertTrue(whiteQueen.drawPath(start, end).equals(myList));
+	}
+	
+	@Test
+	void downLeftdrawPath() {
+		Position start = Position.createPositionFromString("g7");
+		Position end = Position.createPositionFromString("d4");
+		
+		ArrayList<Position> myList = new ArrayList<Position>();
+		
+		myList.add(Position.createPositionFromString("f6"));
+		myList.add(Position.createPositionFromString("e5"));
+		
+		assertTrue(whiteQueen.drawPath(start, end).equals(myList));
 	}
 }

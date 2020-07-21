@@ -1,6 +1,7 @@
 package board;
 
 import java.io.Serializable;
+import java.util.Arrays;
 
 import exceptions.InvalidPositionException;
 
@@ -75,6 +76,26 @@ public class Position implements Serializable{
 	private static boolean isOutOfBounds(int [] position) {
 		return position[0]<0 || position[0]>7 || position[1]<0 || position[1]>7;
 	}
-	
-	
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + Arrays.hashCode(position);
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Position other = (Position) obj;
+		if (!Arrays.equals(position, other.position))
+			return false;
+		return true;
+	}
 }

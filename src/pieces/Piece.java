@@ -39,21 +39,20 @@ public abstract class Piece implements Serializable {
 
 	public ArrayList<Position> drawPath(Position start, Position end) {
 		ArrayList<Position> path = new ArrayList<Position>();
-		int pathLength, xDirection, yDirection, rowDifference, columnDifference;
+		int pathLength, rowDirection, columnDirection, rowDifference, columnDifference;
 
 		rowDifference = end.getPositionAsInteger()[0] - start.getPositionAsInteger()[0];
 		columnDifference = end.getPositionAsInteger()[1] - start.getPositionAsInteger()[1];
 
 		pathLength = Math.max(Math.abs(rowDifference), Math.abs(columnDifference));
 
-		xDirection = (int) Math.signum(columnDifference);
-		yDirection = (int) Math.signum(rowDifference);
+		rowDirection = (int) Math.signum(rowDifference);
+		columnDirection = (int) Math.signum(columnDifference);
 
 		for (int i = 1; i < pathLength; i++) {
-			int firstCoordinatePathFinder = start.getPositionAsInteger()[0] + i * xDirection;
-			int secondCoordinatePathFinder = start.getPositionAsInteger()[1] + i * yDirection;
-			Position pathFinder = Position
-					.createPositionFromInt(new int[] { firstCoordinatePathFinder, secondCoordinatePathFinder });
+			int firstCoordinatePathFinder = start.getPositionAsInteger()[0] + i * rowDirection;
+			int secondCoordinatePathFinder = start.getPositionAsInteger()[1] + i * columnDirection;
+			Position pathFinder = Position.createPositionFromInt(new int[] { firstCoordinatePathFinder, secondCoordinatePathFinder });
 			path.add(pathFinder);
 		}
 		return path;
