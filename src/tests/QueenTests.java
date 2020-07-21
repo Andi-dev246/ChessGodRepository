@@ -123,4 +123,86 @@ class QueenTests {
 		
 		assertTrue(whiteQueen.drawPath(start, end).equals(myList));
 	}
+	
+	@Test
+	void downRightdrawPath() {
+		Position start = Position.createPositionFromString("a8");
+		Position end = Position.createPositionFromString("h1");
+		
+		ArrayList<Position> myList = new ArrayList<Position>();
+		
+		myList.add(Position.createPositionFromString("b7"));
+		myList.add(Position.createPositionFromString("c6"));
+		myList.add(Position.createPositionFromString("d5"));
+		myList.add(Position.createPositionFromString("e4"));
+		myList.add(Position.createPositionFromString("f3"));
+		myList.add(Position.createPositionFromString("g2"));
+		
+		assertTrue(whiteQueen.drawPath(start, end).equals(myList));
+	}
+	
+	@Test
+	void moveUpDrawPath() {
+		Position start = Position.createPositionFromString("a1");
+		Position end = Position.createPositionFromString("a7");
+		
+		ArrayList<Position> myList = new ArrayList<Position>();
+		
+		myList.add(Position.createPositionFromString("a2"));
+		myList.add(Position.createPositionFromString("a3"));
+		myList.add(Position.createPositionFromString("a4"));
+		myList.add(Position.createPositionFromString("a5"));
+		myList.add(Position.createPositionFromString("a6"));
+		
+		assertTrue(whiteQueen.drawPath(start, end).equals(myList));
+	}
+	
+	@Test 
+	void moveDownDrawPath() {
+		Position start = Position.createPositionFromString("b8");
+		Position end = Position.createPositionFromString("b2");
+		
+		ArrayList<Position> myList = new ArrayList<Position>();
+		
+		myList.add(Position.createPositionFromString("b7"));
+		myList.add(Position.createPositionFromString("b6"));
+		myList.add(Position.createPositionFromString("b5"));
+		myList.add(Position.createPositionFromString("b4"));
+		myList.add(Position.createPositionFromString("b3"));
+		
+		assertTrue(whiteQueen.drawPath(start, end).equals(myList));
+	}
+	
+	@Test
+	void moveRightDrawPath() {
+		Position start = Position.createPositionFromString("a1");
+		Position end = Position.createPositionFromString("g1");
+		
+		ArrayList<Position> myList = new ArrayList<Position>();
+		
+		myList.add(Position.createPositionFromString("b1"));
+		myList.add(Position.createPositionFromString("c1"));
+		myList.add(Position.createPositionFromString("d1"));
+		myList.add(Position.createPositionFromString("e1"));
+		myList.add(Position.createPositionFromString("f1"));
+		
+		assertTrue(whiteQueen.drawPath(start, end).equals(myList));
+	}
+	
+	@Test
+	void moveLeftDrawPath() {
+		Position start = Position.createPositionFromString("h3");
+		Position end = Position.createPositionFromString("a3");
+		
+		ArrayList<Position> myList = new ArrayList<Position>();
+		
+		myList.add(Position.createPositionFromString("g3"));
+		myList.add(Position.createPositionFromString("f3"));
+		myList.add(Position.createPositionFromString("e3"));
+		myList.add(Position.createPositionFromString("d3"));
+		myList.add(Position.createPositionFromString("c3"));
+		myList.add(Position.createPositionFromString("b3"));
+		
+		assertTrue(whiteQueen.drawPath(start, end).equals(myList));
+	}
 }

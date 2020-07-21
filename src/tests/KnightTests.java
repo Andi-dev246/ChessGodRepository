@@ -1,6 +1,9 @@
 package tests;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
@@ -81,6 +84,15 @@ class KnightTests {
 		Position end = Position.createPositionFromString("c1");
 		
 		assertFalse(whiteKnight.isValidPath(start, end));
+	}
+	
+	@Test
+	void drawPath() {
+		Position start = Position.createPositionFromString("a1");
+		Position end = Position.createPositionFromString("c1");
+		
+		
+		assertTrue(whiteKnight.drawPath(start, end).isEmpty());
 	}
 
 
