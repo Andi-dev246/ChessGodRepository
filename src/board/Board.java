@@ -103,6 +103,17 @@ public class Board implements Serializable, Iterable<Tile> {
 	public Piece getPiece(Position position) {
 		return this.board[position.getPositionAsInteger()[0]][position.getPositionAsInteger()[1]].getPiece();
 	}
+	
+	public Tile getTile(Position position) {
+		int firstCoordinate = position.getPositionAsInteger()[0]; 
+		int secondCoordinate = position.getPositionAsInteger()[1];
+		
+		return this.board[firstCoordinate][secondCoordinate];
+	}
+	
+	public boolean isEmpty(Position position) {
+		return this.getTile(position).isEmpty();
+	}
 
 	public void printWhitePerspective() {
 		for (int i = 0; i < 8; i++) {
