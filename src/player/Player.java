@@ -76,10 +76,10 @@ public class Player {
 	}
 	
 	public void movePiece(Board board, Position start, Position end) throws Exception{
-		exceptionCheckPreconditions(board, start, end);
+		this.exceptionCheckPreconditions(board, start, end);
 	}
 	
-	private static void exceptionCheckPreconditions(Board board, Position start, Position end) throws Exception{
+	private void exceptionCheckPreconditions(Board board, Position start, Position end) throws Exception{
 		exceptionStartAndEndPositionAreEqual(start, end);
 		exceptionNoPieceOnStart(board, start);
 	}
