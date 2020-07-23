@@ -5,7 +5,9 @@ import java.util.ArrayList;
 import board.Board;
 import board.Position;
 import exceptions.InvalidMoveException;
+import pieces.Pawn;
 import pieces.Piece;
+import pieces.PieceType;
 
 public class Player {
 
@@ -22,5 +24,74 @@ public class Player {
 	public static Player createBlackPlayer() {
 		return new Player(Color.BLACK);
 	}
+	
+	public static boolean isValidMove(Board board, Position start, Position end) throws Exception{
+		exceptionCheckPreconditions(board, start, end);
+		
+		Piece piece = board.getPiece(start);
+		boolean firstCondition, secondCondition, thirdCondition;
+		
+		firstCondition = !endPositionOccupiedByPieceOfSameColor(board, end, piece);
+		secondCondition = isValidPath(board, start, end);
+		thirdCondition = isPathClear(board, start, end);
+		
+		
+		return firstCondition && secondCondition && thirdCondition;
+	}
+	
 
+	private static boolean isValidPath(Board board, Position start, Position end) {
+		Piece piece = board.getPiece(start);
+		PieceType type = board.getPiece(start).getPieceType();
+		switch(type) {
+		case PAWN:
+			if(board.isEmpty(end)) {
+				return piece.isValidPath(start, end);
+			} else {
+				Pawn pawn = (Pawn) piece;
+				return pawn.isValidCaptureMove(start, end);
+			}
+		default:
+			return piece.isValidPath(start, end);
+		}
+	}
+
+	private static void exceptionCheckPreconditions(Board board, Position start, Position end) throws Exception{
+		exceptionStartAndEndPositionAreEqual(start, end);
+		exceptionNoPieceOnStart(board, start);
+	}
+	
+	private static void exceptionNoPieceOnStart(Board board, Position start) throws Exception{
+		if(board.isEmpty(start)) {
+			throw new InvalidMoveException("There is no piece on starting Position.");
+		}
+	}
+
+	private static void exceptionStartAndEndPositionAreEqual(Position start, Position end) throws Exception{
+		if(start.equals(end)) {
+			throw new InvalidMoveException("The start and end Position are equal.");
+		}
+	}
+	
+	private static boolean endPositionOccupiedByPieceOfSameColor(Board board, Position position, Piece piece) {
+		return board.getPiece(position).getColor() == piece.getColor();
+	}
+
+	private static boolean isPathClear(Board board, Position start, Position end) {
+		Piece piece = board.getPiece(start);
+		ArrayList<Position> path = piece.drawPath(start, end);
+		
+		boolean isPathClear = true;
+		for(Position position: path) {
+			if(board.isEmpty(position) != true) {
+				isPathClear = false;
+				break;
+			}
+		}
+		return isPathClear;
+	}
+	
+	public void movePiece(Board board, Position start, Position end) {
+		
+	}
 }
