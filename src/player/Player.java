@@ -25,20 +25,16 @@ public class Player {
 		return new Player(Color.BLACK);
 	}
 	
-	public static boolean isValidMove(Board board, Position start, Position end) throws Exception{
-		exceptionCheckPreconditions(board, start, end);
+	public static boolean isValidMove(Board board, Position start, Position end) {
 		
 		Piece piece = board.getPiece(start);
-		boolean firstCondition, secondCondition, thirdCondition;
 		
-		firstCondition = !endPositionOccupiedByPieceOfSameColor(board, end, piece);
-		secondCondition = isValidPath(board, start, end);
-		thirdCondition = isPathClear(board, start, end);
-		
+		boolean firstCondition = !endPositionOccupiedByPieceOfSameColor(board, end, piece);
+		boolean secondCondition = isValidPath(board, start, end);
+		boolean thirdCondition = isPathClear(board, start, end);
 		
 		return firstCondition && secondCondition && thirdCondition;
 	}
-	
 
 	private static boolean isValidPath(Board board, Position start, Position end) {
 		Piece piece = board.getPiece(start);
@@ -56,23 +52,6 @@ public class Player {
 		}
 	}
 
-	private static void exceptionCheckPreconditions(Board board, Position start, Position end) throws Exception{
-		exceptionStartAndEndPositionAreEqual(start, end);
-		exceptionNoPieceOnStart(board, start);
-	}
-	
-	private static void exceptionNoPieceOnStart(Board board, Position start) throws Exception{
-		if(board.isEmpty(start)) {
-			throw new InvalidMoveException("There is no piece on starting Position.");
-		}
-	}
-
-	private static void exceptionStartAndEndPositionAreEqual(Position start, Position end) throws Exception{
-		if(start.equals(end)) {
-			throw new InvalidMoveException("The start and end Position are equal.");
-		}
-	}
-	
 	private static boolean endPositionOccupiedByPieceOfSameColor(Board board, Position position, Piece piece) {
 		return board.getPiece(position).getColor() == piece.getColor();
 	}
@@ -91,7 +70,24 @@ public class Player {
 		return isPathClear;
 	}
 	
-	public void movePiece(Board board, Position start, Position end) {
-		
+	public void movePiece(Board board, Position start, Position end) throws Exception{
+		exceptionCheckPreconditions(board, start, end);
+	}
+	
+	private static void exceptionCheckPreconditions(Board board, Position start, Position end) throws Exception{
+		exceptionStartAndEndPositionAreEqual(start, end);
+		exceptionNoPieceOnStart(board, start);
+	}
+	
+	private static void exceptionNoPieceOnStart(Board board, Position start) throws Exception{
+		if(board.isEmpty(start)) {
+			throw new InvalidMoveException("There is no piece on starting Position.");
+		}
+	}
+	
+	private static void exceptionStartAndEndPositionAreEqual(Position start, Position end) throws Exception{
+		if(start.equals(end)) {
+			throw new InvalidMoveException("The start and end Position are equal.");
+		}
 	}
 }
