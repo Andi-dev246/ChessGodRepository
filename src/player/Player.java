@@ -29,7 +29,7 @@ public class Player {
 		
 		Piece piece = board.getPiece(start);
 		
-		boolean firstCondition = !endPositionOccupiedByPieceOfSameColor(board, end, piece);
+		boolean firstCondition = !(endPositionOccupiedByPieceOfSameColor(board, end, piece));
 		boolean secondCondition = isValidPath(board, start, end);
 		boolean thirdCondition = isPathClear(board, start, end);
 		
@@ -53,7 +53,12 @@ public class Player {
 	}
 
 	private static boolean endPositionOccupiedByPieceOfSameColor(Board board, Position position, Piece piece) {
-		return board.getPiece(position).getColor() == piece.getColor();
+		if(board.isEmpty(position) != true) {
+			return board.getPiece(position).getColor() == piece.getColor();
+		} else {
+			return false;
+		}
+		
 	}
 
 	private static boolean isPathClear(Board board, Position start, Position end) {
