@@ -29,18 +29,22 @@ class PawnTests {
 	void secondBlackPawnMove() {
 		Position start = Position.createPositionFromString("a6");
 		Position end = Position.createPositionFromString("a5");
-		this.blackPawn.setNumberOfMoves(2);
+		
+		Pawn blackPawn_2 = Pawn.createBlackPawn();
+		blackPawn_2.setNumberOfMoves(1);
 
-		assertTrue(blackPawn.isValidPath(start, end));
+		assertTrue(blackPawn_2.isValidPath(start, end));
 	}
 
 	@Test
 	void wrongSecondBlackPawnMove() {
 		Position start = Position.createPositionFromString("a6");
 		Position end = Position.createPositionFromString("a4");
-		this.blackPawn.setNumberOfMoves(2);
+		
+		Pawn blackPawn_2 = Pawn.createBlackPawn();
+		blackPawn_2.setNumberOfMoves(1);
 
-		assertFalse(blackPawn.isValidPath(start, end));
+		assertFalse(blackPawn_2.isValidPath(start, end));
 	}
 
 	@Test
@@ -63,18 +67,22 @@ class PawnTests {
 	void secondWhitePawnMove() {
 		Position start = Position.createPositionFromString("a4");
 		Position end = Position.createPositionFromString("a5");
-		this.whitePawn.setNumberOfMoves(2);
+		
+		Pawn whitePawn_2 = Pawn.createWhitePawn();
+		whitePawn_2.setNumberOfMoves(1);
 
-		assertTrue(whitePawn.isValidPath(start, end));
+		assertTrue(whitePawn_2.isValidPath(start, end));
 	}
 
 	@Test
 	void wrongSecondWhitePawnMove() {
 		Position start = Position.createPositionFromString("a3");
 		Position end = Position.createPositionFromString("a5");
-		this.whitePawn.setNumberOfMoves(2);
+		
+		Pawn whitePawn_2 = Pawn.createWhitePawn();
+		whitePawn_2.setNumberOfMoves(1);
 
-		assertFalse(whitePawn.isValidPath(start, end));
+		assertFalse(whitePawn_2.isValidPath(start, end));
 	}
 
 	@Test
@@ -89,12 +97,13 @@ class PawnTests {
 	void isValidMoveWhitePawn() {
 		Board board = Board.createEmptyBoard();
 
-		whitePawn.setNumberOfMoves(0);
+		Pawn whitePawn_2 = Pawn.createWhitePawn();
+		whitePawn_2.setNumberOfMoves(0);
 
 		Position start = Position.createPositionFromString("a2");
 		Position end = Position.createPositionFromString("a4");
 
-		board.setPiece(whitePawn, start);
+		board.setPiece(whitePawn_2, start);
 
 		assertTrue(Player.isValidMove(board, start, end));
 	}
@@ -142,13 +151,14 @@ class PawnTests {
 	void isPieceInWayWhitePawn() {
 		Board board = Board.createEmptyBoard();
 
-		whitePawn.setNumberOfMoves(0);
+		Pawn whitePawn_2 = Pawn.createWhitePawn();
+		whitePawn_2.setNumberOfMoves(0);
 
 		Position start = Position.createPositionFromString("a2");
 		Position inBetween = Position.createPositionFromString("a3");
 		Position end = Position.createPositionFromString("a4");
 
-		board.setPiece(whitePawn, start);
+		board.setPiece(whitePawn_2, start);
 		board.setPiece(blackPawn, inBetween);
 
 		assertFalse(Player.isValidMove(board, start, end));
@@ -158,12 +168,13 @@ class PawnTests {
 	void isEndPositionOccupiedByOwnPieceWhitePawn() {
 		Board board = Board.createEmptyBoard();
 
-		whitePawn.setNumberOfMoves(0);
+		Pawn whitePawn_2 = Pawn.createWhitePawn();
+		whitePawn_2.setNumberOfMoves(0);
 
 		Position start = Position.createPositionFromString("a2");
 		Position end = Position.createPositionFromString("a4");
 
-		board.setPiece(whitePawn, start);
+		board.setPiece(whitePawn_2, start);
 		board.setPiece(whiteQueen, end);
 
 		assertFalse(Player.isValidMove(board, start, end));
@@ -173,12 +184,13 @@ class PawnTests {
 	void isValidMoveBlackPawn() {
 		Board board = Board.createEmptyBoard();
 
-		blackPawn.setNumberOfMoves(0);
+		Pawn blackPawn_2 = Pawn.createBlackPawn();
+		blackPawn_2.setNumberOfMoves(0);
 
 		Position start = Position.createPositionFromString("a7");
 		Position end = Position.createPositionFromString("a5");
 
-		board.setPiece(blackPawn, start);
+		board.setPiece(blackPawn_2, start);
 
 		assertTrue(Player.isValidMove(board, start, end));
 	}
@@ -226,13 +238,14 @@ class PawnTests {
 	void isPieceInWayBlackPawn() {
 		Board board = Board.createEmptyBoard();
 
-		blackPawn.setNumberOfMoves(0);
+		Pawn blackPawn_2 = Pawn.createBlackPawn();
+		blackPawn_2.setNumberOfMoves(0);
 
 		Position start = Position.createPositionFromString("a7");
 		Position inBetween = Position.createPositionFromString("a6");
 		Position end = Position.createPositionFromString("a5");
 
-		board.setPiece(blackPawn, start);
+		board.setPiece(blackPawn_2, start);
 		board.setPiece(whitePawn, inBetween);
 
 		assertFalse(Player.isValidMove(board, start, end));
@@ -242,12 +255,13 @@ class PawnTests {
 	void isEndPositionOccupiedByOwnPieceBlackPawn() {
 		Board board = Board.createEmptyBoard();
 
-		blackPawn.setNumberOfMoves(0);
+		Pawn blackPawn_2 = Pawn.createBlackPawn();
+		blackPawn_2.setNumberOfMoves(0);
 
 		Position start = Position.createPositionFromString("a7");
 		Position end = Position.createPositionFromString("a5");
 
-		board.setPiece(blackPawn, start);
+		board.setPiece(blackPawn_2, start);
 		board.setPiece(blackQueen, end);
 
 		assertFalse(Player.isValidMove(board, start, end));
