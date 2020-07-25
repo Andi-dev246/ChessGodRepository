@@ -110,6 +110,19 @@ class KnightTests {
 
 		assertTrue(Player.isValidMove(board, start, end));
 	}
+	
+	@Test
+	void validKnightMoveOverAnotherPiece() {
+		Board board = Board.createEmptyBoard();
+		
+		Position start = Position.createPositionFromString("f5");
+		Position end = Position.createPositionFromString("h4");
+		
+		board.setPiece(whiteKnight, start);
+		board.setPiece(whitePawn, Position.createPositionFromString("g4"));
+		
+		assertTrue(Player.isValidMove(board, start, end));
+	}
 
 	@Test
 	void isvalidCaptureMove() {
@@ -136,4 +149,6 @@ class KnightTests {
 
 		assertFalse(Player.isValidMove(board, start, end));
 	}
+	
+	
 }
