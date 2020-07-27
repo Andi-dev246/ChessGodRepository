@@ -26,7 +26,6 @@ public class Checkmate {
 		return isKingCheckmate(Color.WHITE, board);
 	}
 	
-
 	public static boolean isBlackKingCheckmate(Board board) {
 		return isKingCheckmate(Color.BLACK, board);
 	}
