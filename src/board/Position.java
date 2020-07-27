@@ -1,6 +1,7 @@
 package board;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import exceptions.InvalidPositionException;
@@ -64,6 +65,16 @@ public class Position implements Serializable{
 		return intToString(this.position);
 	}
 	
+	public static ArrayList<Position> getAllPositionsExcept(Position position) {
+		ArrayList<Position> myList = new ArrayList<Position>();
+		for(int i=0, j=0; i < 8 && j <8; i++, j++) {
+			if((i != position.getPositionAsInteger()[0]) && (j != position.getPositionAsInteger()[1])) {
+				myList.add(Position.createPositionFromInt(new int[] {i,j}));
+			}
+		}
+		return myList;
+	}
+	
 	public static void exceptionPositionIsInvalid(int [] position) throws Exception {
 		if(position.length != 2) {
 			throw new InvalidPositionException("This Position has more than two coordinates.");
@@ -76,7 +87,7 @@ public class Position implements Serializable{
 	private static boolean isOutOfBounds(int [] position) {
 		return position[0]<0 || position[0]>7 || position[1]<0 || position[1]>7;
 	}
-
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

@@ -1,12 +1,12 @@
 package player;
 
+import java.util.ArrayList;
+
 import board.Board;
 import board.Position;
 import board.Tile;
 import pieces.Piece;
 import pieces.PieceType;
-import player.Color;
-import player.Player;
 
 public class Checkmate {
 	
@@ -21,6 +21,16 @@ public class Checkmate {
 	public static boolean isBlackKingInCheck(Board board) {
 		return isKingInCheck(Color.BLACK, board);
 	}
+	
+	public static boolean isWhiteKingCheckmate(Board board) {
+		return isKingCheckmate(Color.WHITE, board);
+	}
+	
+
+	public static boolean isBlackKingCheckmate(Board board) {
+		return isKingCheckmate(Color.BLACK, board);
+	}
+	
 	
 	private static boolean isKingInCheck(Color color, Board board) {
 		Position kingPosition = positionOfKingOfColor(color, board);
@@ -47,4 +57,55 @@ public class Checkmate {
 		}
 		return kingPosition;
 	}
+	
+	private static boolean isKingCheckmate(Color color, Board board) {
+		
+		boolean firstCondition = isKingInCheck(color, board);
+		boolean secondCondition = canKingBeSaved(color, board);
+	
+		return firstCondition && secondCondition;
+	}
+
+	private static boolean canKingBeSaved(Color color, Board board) {
+		boolean canKingBeSaved = false;
+		for(Tile tile: board) {
+			Piece piece = tile.getPiece();
+			Position position = tile.getPosition();
+			if(piece.getColor() == color && pieceOnPositionCanSaveKing(position, board)) {
+				canKingBeSaved = true;
+				break;
+			}
+		}
+		return canKingBeSaved;
+	}
+
+	private static boolean pieceOnPositionCanSaveKing(Position position, Board board) {
+		ArrayList<Position> reachablePositions = getAllReachablePositions(position, board);
+		boolean pieceOnPositionCanSaveKing = false;
+		for(Position endPosition: reachablePositions) {
+			Board board2 = board.copy();
+			board2.setPiece(board.getPiece(position), endPosition);
+			board2.setPiece(null, position);
+			
+			Color pieceColor = board.getPiece(position).getColor();
+			if(Checkmate.isKingInCheck(pieceColor, board2) != true) {
+				pieceOnPositionCanSaveKing = true;
+				break;
+			}
+		}
+		return pieceOnPositionCanSaveKing;
+	}
+
+	private static ArrayList<Position> getAllReachablePositions(Position position, Board board) {
+		ArrayList<Position> reachablePositions = new ArrayList<Position>();
+		ArrayList<Position> allPositions = Position.getAllPositionsExcept(position);
+		for(Position endPosition: allPositions) {
+			if(Player.isValidMove(board, position, endPosition)) {
+				reachablePositions.add(endPosition);
+			}
+		}
+		return reachablePositions;
+	}
+	
+	
 }
