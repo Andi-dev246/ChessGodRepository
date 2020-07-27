@@ -11,7 +11,7 @@ import pieces.PieceType;
 public class Checkmate {
 	
 	public Checkmate() throws Exception{
-		throw new RuntimeException("The class Checkmate has no instance and a Object of the class is not meant to be created.");
+		throw new RuntimeException("The class Checkmate has no instance variables and a Object of the class is not meant to be created.");
 	}
 	
 	public static boolean isWhiteKingInCheck(Board board) {
@@ -61,22 +61,22 @@ public class Checkmate {
 	private static boolean isKingCheckmate(Color color, Board board) {
 		
 		boolean firstCondition = isKingInCheck(color, board);
-		boolean secondCondition = canKingBeSaved(color, board);
+		boolean secondCondition = kingCanNotBeSaved(color, board);
 	
 		return firstCondition && secondCondition;
 	}
 
-	private static boolean canKingBeSaved(Color color, Board board) {
-		boolean canKingBeSaved = false;
+	private static boolean kingCanNotBeSaved(Color color, Board board) {
+		boolean kingCanNotBeSaved = true;
 		for(Tile tile: board) {
 			Piece piece = tile.getPiece();
 			Position position = tile.getPosition();
 			if(piece.getColor() == color && pieceOnPositionCanSaveKing(position, board)) {
-				canKingBeSaved = true;
+				kingCanNotBeSaved = false;
 				break;
 			}
 		}
-		return canKingBeSaved;
+		return kingCanNotBeSaved;
 	}
 
 	private static boolean pieceOnPositionCanSaveKing(Position position, Board board) {
