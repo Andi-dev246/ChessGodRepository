@@ -113,13 +113,10 @@ class KnightTests {
 	
 	@Test
 	void validKnightMoveOverAnotherPiece() {
-		Board board = Board.createEmptyBoard();
+		Board board = Board.createDefaultBoard();
 		
-		Position start = Position.createPositionFromString("f5");
-		Position end = Position.createPositionFromString("h4");
-		
-		board.setPiece(whiteKnight, start);
-		board.setPiece(whitePawn, Position.createPositionFromString("g4"));
+		Position start = Position.createPositionFromString("b1");
+		Position end = Position.createPositionFromString("c3");
 		
 		assertTrue(Player.isValidMove(board, start, end));
 	}
