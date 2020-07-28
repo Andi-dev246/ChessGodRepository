@@ -91,9 +91,11 @@ public class Board implements Serializable, Iterable<Tile> {
 	
 	public Board copy() {
 		Board copyBoard = Board.createEmptyBoard();
-		for(int i=0, j=0; i<8 && j<8; i++, j++) {
-			Position position = Position.createPositionFromInt(new int[] {i,j});
-			copyBoard.setPiece(this.getPiece(position), position);
+		for(int i=0; i<8 ; i++) {
+			for(int j=0; j<8; j++) {
+				Position position = Position.createPositionFromInt(new int[] {i,j});
+				copyBoard.setPiece(this.getPiece(position), position);
+			}
 		}
 		return copyBoard;
 	}
@@ -129,7 +131,7 @@ public class Board implements Serializable, Iterable<Tile> {
 	public void printWhitePerspective() {
 		for (int i = 0; i < 8; i++) {
 			for (int j = 0; j < 8; j++) {
-				System.out.printf("%-6s", this.board[7 - i][7 - j].toString());
+				System.out.printf("%-6s", this.board[7 - i][j].toString());
 			}
 			System.out.println();
 			System.out.println();
