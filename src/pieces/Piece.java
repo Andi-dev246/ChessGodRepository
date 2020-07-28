@@ -40,6 +40,11 @@ public abstract class Piece implements Serializable {
 
 	public ArrayList<Position> drawPath(Position start, Position end) {
 		ArrayList<Position> path = new ArrayList<Position>();
+		// Method should return a empty list if is Valid Path is false otherwise there can be a crash in Checkmate.isKingInCheck
+		if(this.isValidPath(start, end) == false) {
+			return path;
+		}
+		
 		int pathLength, rowDirection, columnDirection, rowDifference, columnDifference;
 
 		rowDifference = end.getPositionAsInteger()[0] - start.getPositionAsInteger()[0];

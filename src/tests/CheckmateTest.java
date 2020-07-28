@@ -47,7 +47,6 @@ class CheckmateTest {
 		board.setPiece(Pawn.createBlackPawn(),Position.createPositionFromString("b7"));
 		board.setPiece(Pawn.createBlackPawn(),Position.createPositionFromString("c7"));
 		board.setPiece(Pawn.createBlackPawn(),Position.createPositionFromString("d6"));
-		board.setPiece(Pawn.createBlackPawn(),Position.createPositionFromString("f7"));
 		board.setPiece(Bishop.createBlackBishop(),Position.createPositionFromString("c8"));
 		board.setPiece(Bishop.createBlackBishop(),Position.createPositionFromString("d4"));
 		board.setPiece(Knight.createBlackKnight(),Position.createPositionFromString("d8"));
