@@ -62,12 +62,12 @@ public class Board implements Serializable, Iterable<Tile> {
 		this.setPiece(Bishop.createBlackBishop(), Position.createPositionFromString("f8"));
 
 		// Setup Queens
-		this.setPiece(Queen.createWhiteQueen(), Position.createPositionFromString("e1"));
-		this.setPiece(Queen.createBlackQueen(), Position.createPositionFromString("e8"));
+		this.setPiece(Queen.createWhiteQueen(), Position.createPositionFromString("d1"));
+		this.setPiece(Queen.createBlackQueen(), Position.createPositionFromString("d8"));
 
 		// Setup Kings
-		this.setPiece(King.createWhiteKing(), Position.createPositionFromString("d1"));
-		this.setPiece(King.createBlackKing(), Position.createPositionFromString("d8"));
+		this.setPiece(King.createWhiteKing(), Position.createPositionFromString("e1"));
+		this.setPiece(King.createBlackKing(), Position.createPositionFromString("e8"));
 
 	}
 
