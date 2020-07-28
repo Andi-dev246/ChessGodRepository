@@ -69,7 +69,7 @@ public class Position implements Serializable{
 		ArrayList<Position> myList = new ArrayList<Position>();
 		for(int i=0; i<8; i++) {
 			for(int j=0; j<8; j++) {
-				if((i != position.getPositionAsInteger()[0]) && (j != position.getPositionAsInteger()[1])) {
+				if(position.equals(Position.createPositionFromInt(new int[] {i,j})) != true) {
 					myList.add(Position.createPositionFromInt(new int[] {i,j}));
 				}
 			}
