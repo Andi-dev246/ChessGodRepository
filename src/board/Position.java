@@ -88,6 +88,13 @@ public class Position implements Serializable{
 		return position[0]<0 || position[0]>7 || position[1]<0 || position[1]>7;
 	}
 	
+	
+	
+	@Override
+	public String toString() {
+		return "Position [position=" + Arrays.toString(position) + "]";
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

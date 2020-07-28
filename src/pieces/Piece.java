@@ -8,6 +8,7 @@ import player.Color;
 
 public abstract class Piece implements Serializable {
 
+
 	private static final long serialVersionUID = -8866279910626551589L;
 	private int numberOfMoves;
 	private Color color;
@@ -58,4 +59,31 @@ public abstract class Piece implements Serializable {
 		return path;
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((color == null) ? 0 : color.hashCode());
+		result = prime * result + numberOfMoves;
+		result = prime * result + ((pieceType == null) ? 0 : pieceType.hashCode());
+		return result;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Piece other = (Piece) obj;
+		if (color != other.color)
+			return false;
+		if (numberOfMoves != other.numberOfMoves)
+			return false;
+		if (pieceType != other.pieceType)
+			return false;
+		return true;
+	}
 }
