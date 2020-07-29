@@ -40,7 +40,7 @@ public abstract class Piece implements Serializable {
 
 	public ArrayList<Position> drawPath(Position start, Position end) {
 		ArrayList<Position> path = new ArrayList<Position>();
-		// Method should return a empty list if is Valid Path is false otherwise there can be a crash in Checkmate.isKingInCheck
+		// Method should return a empty list if isValidPath is false otherwise there can be a crash in Checkmate.isKingInCheck
 		if(this.isValidPath(start, end) == false) {
 			return path;
 		}
@@ -56,8 +56,8 @@ public abstract class Piece implements Serializable {
 		columnDirection = (int) Math.signum(columnDifference);
 
 		for (int i = 1; i < pathLength; i++) {
-			int firstCoordinatePathFinder = start.getPositionAsInteger()[0] + i * rowDirection;
-			int secondCoordinatePathFinder = start.getPositionAsInteger()[1] + i * columnDirection;
+			int firstCoordinatePathFinder = start.getPositionAsInteger()[0] + i*rowDirection;
+			int secondCoordinatePathFinder = start.getPositionAsInteger()[1] + i*columnDirection;
 			Position pathFinder = Position.createPositionFromInt(new int[] { firstCoordinatePathFinder, secondCoordinatePathFinder });
 			path.add(pathFinder);
 		}
@@ -68,9 +68,9 @@ public abstract class Piece implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((color == null) ? 0 : color.hashCode());
-		result = prime * result + numberOfMoves;
-		result = prime * result + ((pieceType == null) ? 0 : pieceType.hashCode());
+		result = prime*result + ((color == null) ? 0 : color.hashCode());
+		result = prime*result + numberOfMoves;
+		result = prime*result + ((pieceType == null) ? 0 : pieceType.hashCode());
 		return result;
 	}
 	
