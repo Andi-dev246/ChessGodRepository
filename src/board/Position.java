@@ -17,7 +17,7 @@ public class Position implements Serializable{
 			exceptionPositionIsInvalid(position);
 			this.position = position;
 		} catch (Exception e) {
-			e.getMessage();
+			e.getStackTrace();
 		}
 	}
 	
@@ -26,7 +26,7 @@ public class Position implements Serializable{
 			exceptionPositionIsInvalid(stringToInt(string));
 			 this.position = stringToInt(string);
 		} catch (Exception e) {
-			e.getMessage();
+			e.getStackTrace();
 		}
 	}
 	
