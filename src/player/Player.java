@@ -76,11 +76,36 @@ public class Player {
 	
 	public void movePiece(Board board, Position start, Position end) throws Exception{
 		this.exceptionCheckPreconditions(board, start, end);
+		
+		Board board2 = board.copy();
+		board2.setPiece(board.getPiece(start), end);
+		board2.setPiece(null, start);
+		
+		Color pieceColor = board.getPiece(start).getColor();
+		if(Check.isKingInCheck(pieceColor, board2) != true) {
+			throw new InvalidMoveException("King is in Check.");
+		} 
+		board = board2.copy();
 	}
 	
 	private void exceptionCheckPreconditions(Board board, Position start, Position end) throws Exception{
 		exceptionStartAndEndPositionAreEqual(start, end);
 		exceptionNoPieceOnStart(board, start);
+		exceptionPieceOnStartHasWrongColor(board, start, this.color);
+		exceptionMoveIsNotValid(board, start, end);
+	}
+	
+	private void exceptionMoveIsNotValid(Board board, Position start, Position end) throws InvalidMoveException {
+		if(isValidMove(board, start, end) == false) {
+			throw new InvalidMoveException();
+		}
+		
+	}
+
+	private static void exceptionPieceOnStartHasWrongColor(Board board, Position start, Color color) throws InvalidMoveException {
+		if(board.getPiece(start).getColor() != color) {
+			throw new InvalidMoveException("The Player cannot move an enemy piece.");
+		}
 	}
 	
 	private static void exceptionNoPieceOnStart(Board board, Position start) throws Exception{
