@@ -10,7 +10,7 @@ import pieces.King;
 import pieces.Knight;
 import pieces.Pawn;
 import pieces.Queen;
-import player.Checkmate;
+import player.Check;
 
 class CheckTest {
 	
@@ -26,7 +26,7 @@ class CheckTest {
 		board.setPiece(blackKnight, Position.createPositionFromString("e3"));
 		board.setPiece(whiteKing, Position.createPositionFromString("g4"));
 		
-		assertTrue(Checkmate.isWhiteKingInCheck(board));
+		assertTrue(Check.isWhiteKingInCheck(board));
 	}
 
 	@Test
@@ -38,7 +38,7 @@ class CheckTest {
 		board.setPiece(blackKnight, Position.createPositionFromString("e3"));
 		board.setPiece(whiteKing, Position.createPositionFromString("g3"));
 		
-		assertFalse(Checkmate.isWhiteKingInCheck(board));
+		assertFalse(Check.isWhiteKingInCheck(board));
 	}
 
 	@Test
@@ -50,7 +50,7 @@ class CheckTest {
 		board.setPiece(whiteKnight, Position.createPositionFromString("e3"));
 		board.setPiece(whiteKing, Position.createPositionFromString("g4"));
 		
-		assertFalse(Checkmate.isWhiteKingInCheck(board));
+		assertFalse(Check.isWhiteKingInCheck(board));
 	}
 	
 	@Test
@@ -62,7 +62,7 @@ class CheckTest {
 		board.setPiece(blackQueen, Position.createPositionFromString("f5"));
 		board.setPiece(whiteKing, Position.createPositionFromString("h3"));
 		
-		assertTrue(Checkmate.isWhiteKingInCheck(board));
+		assertTrue(Check.isWhiteKingInCheck(board));
 	}
 	
 	@Test
@@ -76,6 +76,6 @@ class CheckTest {
 		board.setPiece(whitePawn, Position.createPositionFromString("g4"));
 		board.setPiece(whiteKing, Position.createPositionFromString("h3"));
 		
-		assertFalse(Checkmate.isWhiteKingInCheck(board));
+		assertFalse(Check.isWhiteKingInCheck(board));
 	}
 }
