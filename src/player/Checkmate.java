@@ -6,7 +6,6 @@ import board.Board;
 import board.Position;
 import board.Tile;
 import pieces.Piece;
-import pieces.PieceType;
 
 public class Checkmate {
 	
