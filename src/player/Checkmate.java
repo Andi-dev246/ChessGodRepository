@@ -47,10 +47,12 @@ public class Checkmate {
 		ArrayList<Position> reachablePositions = getAllReachablePositions(position, board);
 		boolean pieceOnPositionCanSaveKing = false;
 		for(Position endPosition: reachablePositions) {
-			Board board2 = board.copy();
+			Board board2 = Board.createEmptyBoard();
+			board2.copy(board);
 			board2.setPiece(board.getPiece(position), endPosition);
 			board2.setPiece(null, position);
 			
+			Piece dummyPiece = board.getPiece(position);
 			Color pieceColor = board.getPiece(position).getColor();
 			if(Check.isKingInCheck(pieceColor, board2) != true) {
 				pieceOnPositionCanSaveKing = true;

@@ -89,15 +89,15 @@ public class Board implements Serializable, Iterable<Tile> {
 		}
 	}
 	
-	public Board copy() {
-		Board copyBoard = Board.createEmptyBoard();
+	public void copy(Board board) {
+		this.clearBoard();
 		for(int i=0; i<8 ; i++) {
 			for(int j=0; j<8; j++) {
-				Position position = Position.createPositionFromInt(new int[] {i,j});
-				copyBoard.setPiece(this.getPiece(position), position);
+				Piece piece = board.getPiece(Position.createPositionFromInt(new int[] {i,j}));
+				this.setPiece(piece, Position.createPositionFromInt(new int[] {i,j}));
 			}
 		}
-		return copyBoard;
+		this.setCount(board.getCount());
 	}
 
 

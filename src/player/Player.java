@@ -77,22 +77,22 @@ public class Player {
 	public void movePiece(Board board, Position start, Position end) throws Exception{
 		this.exceptionCheckPreconditions(board, start, end);
 		
-		Board board2 = board.copy();
+		Board board2 = Board.createEmptyBoard();
+		board2.copy(board);
 		board2.setPiece(board.getPiece(start), end);
 		board2.setPiece(null, start);
 		
 		Color pieceColor = board.getPiece(start).getColor();
 		if(Check.isKingInCheck(pieceColor, board2)) {
 			throw new InvalidMoveException("King is in Check.");
-		} 
-		
-		board.setPiece(board.getPiece(start), end);
-		board.setPiece(null, start);
-		
-		int i = board.getPiece(end).getNumberOfMoves();
-		board.getPiece(end).setNumberOfMoves(i + 1);
-		int j = board.getCount();
-		board.setCount(j + 1);
+		} else {
+			int i = board.getPiece(start).getNumberOfMoves() + 1;
+			int j = board.getCount() + 1;
+			board.getPiece(start).setNumberOfMoves(i);
+			board.setCount(j);
+			// copy the board2 to set the piece
+			board.copy(board2); 
+		}
 	}
 	
 	private void exceptionCheckPreconditions(Board board, Position start, Position end) throws Exception{

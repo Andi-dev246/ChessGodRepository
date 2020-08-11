@@ -9,19 +9,11 @@ public class Tile implements Serializable {
 
 	private static final long serialVersionUID = -5270338999414322275L;
 	private Position position;
-	private Color color;
 	private Piece piece;
 
 	private Tile(Position position, Piece piece) {
 		this.setPosition(position);
 		this.setPiece(piece);
-
-		int sum = position.getPositionAsInteger()[0] + position.getPositionAsInteger()[1];
-		if (sum % 2 == 0) {
-			this.color = Color.BLACK;
-		} else {
-			this.color = Color.WHITE;
-		}
 	}
 
 	public static Tile createEmptyTile(Position position) {
@@ -49,7 +41,12 @@ public class Tile implements Serializable {
 	}
 
 	public Color getColor() {
-		return color;
+		int sum = position.getPositionAsInteger()[0] + position.getPositionAsInteger()[1];
+		if (sum % 2 == 0) {
+			return Color.BLACK;
+		} else {
+			return Color.WHITE;
+		}
 	}
 
 	public boolean isEmpty() {
@@ -69,7 +66,6 @@ public class Tile implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((color == null) ? 0 : color.hashCode());
 		result = prime * result + ((piece == null) ? 0 : piece.hashCode());
 		result = prime * result + ((position == null) ? 0 : position.hashCode());
 		return result;
@@ -84,8 +80,6 @@ public class Tile implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Tile other = (Tile) obj;
-		if (color != other.color)
-			return false;
 		if (piece == null) {
 			if (other.piece != null)
 				return false;
@@ -98,4 +92,5 @@ public class Tile implements Serializable {
 			return false;
 		return true;
 	}
+
 }
