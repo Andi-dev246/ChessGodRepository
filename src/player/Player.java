@@ -82,10 +82,17 @@ public class Player {
 		board2.setPiece(null, start);
 		
 		Color pieceColor = board.getPiece(start).getColor();
-		if(Check.isKingInCheck(pieceColor, board2) != true) {
+		if(Check.isKingInCheck(pieceColor, board2)) {
 			throw new InvalidMoveException("King is in Check.");
 		} 
-		board = board2.copy();
+		
+		board.setPiece(board.getPiece(start), end);
+		board.setPiece(null, start);
+		
+		int i = board.getPiece(end).getNumberOfMoves();
+		board.getPiece(end).setNumberOfMoves(i + 1);
+		int j = board.getCount();
+		board.setCount(j + 1);
 	}
 	
 	private void exceptionCheckPreconditions(Board board, Position start, Position end) throws Exception{
