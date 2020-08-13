@@ -130,22 +130,28 @@ public class Board implements Serializable, Iterable<Tile> {
 
 	public void printWhitePerspective() {
 		for (int i = 0; i < 8; i++) {
+			System.out.printf("%-1s|    ", 8-i);
 			for (int j = 0; j < 8; j++) {
 				System.out.printf("%-6s", this.board[7 - i][j].toString());
 			}
 			System.out.println();
 			System.out.println();
 		}
+		System.out.println("____________________________________________________");
+		System.out.println("        A     B     C     D     E     F     G     H   ");
 	}
 
 	public void printBlackPerspective() {
 		for (int i = 0; i < 8; i++) {
+			System.out.printf("%-1s|    ", i+1);
 			for (int j = 0; j < 8; j++) {
-				System.out.printf("%-6s", this.board[i][j].toString());
+				System.out.printf("%-6s", this.board[i][7-j].toString());
 			}
 			System.out.println();
 			System.out.println();
 		}
+		System.out.println("____________________________________________________");
+		System.out.println("        H     G     F     E     D     C     B     A   ");
 	}
 
 	public void saveBoard() {
