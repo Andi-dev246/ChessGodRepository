@@ -6,6 +6,7 @@ import board.Board;
 import board.Position;
 import player.Checkmate;
 import player.Player;
+import player.Stalemate;
 
 public class MainGame {
 
@@ -24,15 +25,15 @@ public class MainGame {
 		   if(count%2 == 0) {
 			   
 			   board.printWhitePerspective();
-			   System.out.println("============================================");
+			   System.out.println("=================================================");
 			   
 			   System.out.println("White Player enter a starting poition for a move.");
-			   System.out.println("============================================");
+			   System.out.println("=================================================");
 			   
 			   String start = input.nextLine();
 			   
 			   System.out.println("Now enter a end Position");
-			   System.out.println("============================================");
+			   System.out.println("=================================================");
 			   
 			   String end = input.nextLine();
 			   
@@ -47,15 +48,15 @@ public class MainGame {
 		   }
 		   else {
 			   board.printBlackPerspective();
-			   System.out.println("============================================");
+			   System.out.println("=================================================");
 			   
 			   System.out.println("Black Player enter a starting poition for a move.");
-			   System.out.println("============================================");
+			   System.out.println("=================================================");
 			   
 			   String start = input.nextLine();
 			   
 			   System.out.println("Now enter a end Position");
-			   System.out.println("============================================");
+			   System.out.println("=================================================");
 			   
 			   String end = input.nextLine();
 			   
@@ -67,7 +68,7 @@ public class MainGame {
 				continue;
 			}
 		   }
-		} while((Checkmate.isWhiteKingCheckmate(board) || Checkmate.isBlackKingCheckmate(board)) == false);
+		} while((Checkmate.isWhiteKingCheckmate(board) || Checkmate.isBlackKingCheckmate(board) || Stalemate.isWhiteKingStalemate(board) || Stalemate.isBlackKingStalemate(board)) == false);
 		System.out.println("The Game is over.");
 		input.close();
 	}
