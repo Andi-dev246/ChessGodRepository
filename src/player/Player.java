@@ -92,6 +92,9 @@ public class Player {
 			board.setCount(j);
 			// copy the board2 to set the piece
 			board.copy(board2); 
+			
+			int count = board.getCount();
+			board.setCount(count +1);
 		}
 	}
 	
