@@ -266,4 +266,26 @@ class PawnTests {
 
 		assertFalse(Player.isValidMove(board, start, end));
 	}
+	
+	@Test
+	void isMorphPossible_BlackPawn() {
+		Board board = Board.createEmptyBoard();
+		Pawn blackPawn_2 = Pawn.createBlackPawn();
+		Position end = Position.createPositionFromString("b1");
+		
+		board.setPiece(blackPawn_2, end);
+		
+		assertTrue(blackPawn_2.isMorphPossible(end));
+	}
+	
+	@Test
+	void isMorphPossible_WhitePawn() {
+		Board board = Board.createEmptyBoard();
+		Pawn whitePawn_2 = Pawn.createWhitePawn();
+		Position end = Position.createPositionFromString("b8");
+		
+		board.setPiece(whitePawn_2, end);
+		
+		assertTrue(whitePawn_2.isMorphPossible(end));
+	}
 }
