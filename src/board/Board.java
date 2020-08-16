@@ -1,15 +1,10 @@
 package board;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.List;
 
 import pieces.Bishop;
 import pieces.King;
@@ -23,7 +18,7 @@ public class Board implements Serializable, Iterable<Tile> {
 
 	private static final long serialVersionUID = 4054077618335187636L;
 	private Tile[][] board;
-	private int count;
+	private List<Board> gameHistory = new ArrayList<Board>();
 
 	private Board() {
 		board = new Tile[8][8];
@@ -97,16 +92,19 @@ public class Board implements Serializable, Iterable<Tile> {
 				this.setPiece(piece, Position.createPositionFromInt(new int[] {i,j}));
 			}
 		}
-		this.setCount(board.getCount());
 	}
 
 
 	public int getCount() {
-		return count;
+		return gameHistory.size();
+	}
+	
+	public Board getBoardAfterTurn(int i) {
+		return gameHistory.get(i);
 	}
 
-	public void setCount(int count) {
-		this.count = count;
+	public void addToHistory() {
+		gameHistory.add(this);
 	}
 
 	public void setPiece(Piece piece, Position position) {
@@ -154,38 +152,6 @@ public class Board implements Serializable, Iterable<Tile> {
 		System.out.println("        H     G     F     E     D     C     B     A   ");
 	}
 
-	public void saveBoard() {
-		try (FileOutputStream fs = new FileOutputStream("ChessGod.data")) {
-
-			ObjectOutputStream os = new ObjectOutputStream(fs);
-			os.writeObject(this);
-			os.close();
-
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
-	public Board loadBoard() {
-		try (FileInputStream fs = new FileInputStream("ChessGod.data")) {
-
-			ObjectInputStream os = new ObjectInputStream(fs);
-			Board board = (Board) os.readObject();
-			os.close();
-
-			return board;
-
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-		return Board.createDefaultBoard();
-	}
 
 	@Override
 	public Iterator<Tile> iterator() {
@@ -200,16 +166,15 @@ public class Board implements Serializable, Iterable<Tile> {
 		}
 		return myList.listIterator();
 	}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + Arrays.deepHashCode(board);
-		result = prime * result + count;
 		return result;
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -220,8 +185,6 @@ public class Board implements Serializable, Iterable<Tile> {
 			return false;
 		Board other = (Board) obj;
 		if (!Arrays.deepEquals(board, other.board))
-			return false;
-		if (count != other.count)
 			return false;
 		return true;
 	}

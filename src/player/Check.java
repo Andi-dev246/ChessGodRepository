@@ -12,14 +12,14 @@ public class Check {
 	}
 
 	public static boolean isWhiteKingInCheck(Board board) {
-		return isKingInCheck(Color.WHITE, board);
+		return isKingInCheck(ChessColor.WHITE, board);
 	}
 
 	public static boolean isBlackKingInCheck(Board board) {
-		return isKingInCheck(Color.BLACK, board);
+		return isKingInCheck(ChessColor.BLACK, board);
 	}
 	
-	protected static boolean isKingInCheck(Color color, Board board) {
+	protected static boolean isKingInCheck(ChessColor color, Board board) {
 		Position kingPosition = positionOfKingOfColor(color, board);
 		boolean isKingInCheck = false;
 		
@@ -34,7 +34,7 @@ public class Check {
 		return isKingInCheck;
 	}
 	
-	private static Position positionOfKingOfColor(Color color, Board board) {
+	private static Position positionOfKingOfColor(ChessColor color, Board board) {
 		Position kingPosition = null;
 		for(Tile tile: board) {
 			if(tile.getPiece().getPieceType() == PieceType.KING && tile.getPiece().getColor() == color) {

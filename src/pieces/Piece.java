@@ -4,17 +4,17 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import board.Position;
-import player.Color;
+import player.ChessColor;
 
 public abstract class Piece implements Serializable {
 
 
 	private static final long serialVersionUID = -8866279910626551589L;
 	private int numberOfMoves;
-	private Color color;
+	private ChessColor color;
 	protected PieceType pieceType;
 
-	protected Piece(Color color, PieceType type) {
+	protected Piece(ChessColor color, PieceType type) {
 		this.color = color;
 		setNumberOfMoves(0);
 		this.pieceType = type;
@@ -28,7 +28,7 @@ public abstract class Piece implements Serializable {
 		this.numberOfMoves = numberOfMoves;
 	}
 
-	public Color getColor() {
+	public ChessColor getColor() {
 		return color;
 	}
 

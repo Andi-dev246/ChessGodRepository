@@ -1,22 +1,22 @@
 package pieces;
 
 import board.Position;
-import player.Color;
+import player.ChessColor;
 
 public final class Rook extends Piece{
 
 	private static final long serialVersionUID = 3065523308359553685L;
 
-	private Rook(Color color) {
+	private Rook(ChessColor color) {
 		super(color, PieceType.ROOK);
 	}
 	
 	public static Rook createWhiteRook() {
-		return new Rook(Color.WHITE);
+		return new Rook(ChessColor.WHITE);
 	}
 	
 	public static Rook createBlackRook() {
-		return new Rook(Color.BLACK);
+		return new Rook(ChessColor.BLACK);
 	}
 
 	@Override
@@ -32,7 +32,7 @@ public final class Rook extends Piece{
 	@Override
 	public String toString() {
 		String color;
-		color = (this.getColor() == Color.WHITE) ? "W" : "B";
+		color = (this.getColor() == ChessColor.WHITE) ? "W" : "B";
 		return "R"+"("+color+")";
 	}
 }

@@ -1,22 +1,22 @@
 package pieces;
 
 import board.Position;
-import player.Color;
+import player.ChessColor;
 
 public final class King extends Piece{
 
 	private static final long serialVersionUID = -8777701028261618727L;
 
-	private King(Color color) {
+	private King(ChessColor color) {
 		super(color, PieceType.KING);
 	}
 	
 	public static King createWhiteKing() {
-		return new King(Color.WHITE);
+		return new King(ChessColor.WHITE);
 	}
 	
 	public static King createBlackKing() {
-		return new King(Color.BLACK);
+		return new King(ChessColor.BLACK);
 	}
 	
 	@Override
@@ -32,7 +32,7 @@ public final class King extends Piece{
 	@Override
 	public String toString() {
 		String color;
-		color = (this.getColor() == Color.WHITE) ? "W" : "B";
+		color = (this.getColor() == ChessColor.WHITE) ? "W" : "B";
 		return "K"+"("+color+")";
 	}
 }
