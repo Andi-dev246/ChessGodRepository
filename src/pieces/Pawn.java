@@ -59,6 +59,29 @@ public final class Pawn extends Piece {
 			return false;
 		}
 	}
+	
+	public boolean isMorphPossible(Position end) {
+		boolean morphPossible = true;
+		int rowPosition;
+		
+		rowPosition = end.getPositionAsInteger()[0];
+		
+		switch(this.getColor()) {
+		
+		case BLACK:
+			if(rowPosition == 0) {
+				return morphPossible;
+			}
+		
+		case WHITE:
+			if(rowPosition == 7) {
+				return morphPossible;
+			}
+			
+		default:
+			return false;
+		}
+	}
 
 	@Override
 	public String toString() {
