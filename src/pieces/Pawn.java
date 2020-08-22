@@ -2,9 +2,12 @@ package pieces;
 
 import board.Position;
 import player.ChessColor;
+<<<<<<< HEAD
 import player.Player;
 import board.Board;
 import java.util.Scanner;
+=======
+>>>>>>> branch 'master' of https://github.com/Andi-dev246/ChessGodRepository.git
 
 public final class Pawn extends Piece {
 
