@@ -2,6 +2,9 @@ package pieces;
 
 import board.Position;
 import player.Color;
+import player.Player;
+import board.Board;
+import java.util.Scanner;
 
 public final class Pawn extends Piece {
 
@@ -22,7 +25,7 @@ public final class Pawn extends Piece {
 	@Override
 	public boolean isValidPath(Position start, Position end) {
 		int rowDifference, columnDifference;
-		
+
 		rowDifference = end.getPositionAsInteger()[0] - start.getPositionAsInteger()[0];
 		columnDifference = end.getPositionAsInteger()[1] - start.getPositionAsInteger()[1];
 
@@ -46,7 +49,7 @@ public final class Pawn extends Piece {
 
 	public boolean isValidCaptureMove(Position start, Position end) {
 		int rowDifference, columnDifference;
-		
+
 		rowDifference = end.getPositionAsInteger()[0] - start.getPositionAsInteger()[0];
 		columnDifference = Math.abs(end.getPositionAsInteger()[1] - start.getPositionAsInteger()[1]);
 
@@ -59,28 +62,69 @@ public final class Pawn extends Piece {
 			return false;
 		}
 	}
-	
-	public boolean isMorphPossible(Position end) {
+
+	private boolean isMorphPossible(Position end) {
 		boolean morphPossible = true;
 		int rowPosition;
-		
+
 		rowPosition = end.getPositionAsInteger()[0];
-		
-		switch(this.getColor()) {
-		
+
+		switch (this.getColor()) {
+
 		case BLACK:
-			if(rowPosition == 0) {
+			if (rowPosition == 0) {
 				return morphPossible;
 			}
-		
+
 		case WHITE:
-			if(rowPosition == 7) {
+			if (rowPosition == 7) {
 				return morphPossible;
 			}
-			
+
 		default:
 			return false;
 		}
+	}
+
+	public Piece pawnMorph(Board board, Position end, PieceType pieceType) {
+
+		if (isMorphPossible(end) == true) {
+			switch (this.getColor()) {
+
+			case BLACK:
+
+				switch (pieceType) {
+				case BISHOP:
+					return Bishop.createBlackBishop();
+				case KNIGHT:
+					return Knight.createBlackKnight();
+				case QUEEN:
+					return Queen.createBlackQueen();
+				case ROOK:
+					return Rook.createBlackRook();
+				default:
+					return this;
+				}
+
+			case WHITE:
+
+				switch (pieceType) {
+				case BISHOP:
+					return Bishop.createBlackBishop();
+				case KNIGHT:
+					return Knight.createBlackKnight();
+				case QUEEN:
+					return Queen.createBlackQueen();
+				case ROOK:
+					return Rook.createBlackRook();
+				default:
+					return this;
+				}
+			}
+		} else {
+			return this;
+		}
+		return null;
 	}
 
 	@Override
