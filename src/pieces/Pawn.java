@@ -1,7 +1,7 @@
 package pieces;
 
 import board.Position;
-import player.Color;
+import player.ChessColor;
 import player.Player;
 import board.Board;
 import java.util.Scanner;
@@ -10,16 +10,16 @@ public final class Pawn extends Piece {
 
 	private static final long serialVersionUID = -9017915203779009904L;
 
-	private Pawn(Color color) {
+	private Pawn(ChessColor color) {
 		super(color, PieceType.PAWN);
 	}
 
 	public static Pawn createWhitePawn() {
-		return new Pawn(Color.WHITE);
+		return new Pawn(ChessColor.WHITE);
 	}
 
 	public static Pawn createBlackPawn() {
-		return new Pawn(Color.BLACK);
+		return new Pawn(ChessColor.BLACK);
 	}
 
 	@Override
@@ -130,7 +130,7 @@ public final class Pawn extends Piece {
 	@Override
 	public String toString() {
 		String color;
-		color = (this.getColor() == Color.WHITE) ? "W" : "B";
+		color = (this.getColor() == ChessColor.WHITE) ? "W" : "B";
 		return "P" + "(" + color + ")";
 	}
 }
