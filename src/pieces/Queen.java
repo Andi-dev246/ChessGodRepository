@@ -1,22 +1,22 @@
 package pieces;
 
 import board.Position;
-import player.Color;
+import player.ChessColor;
 
 public final class Queen extends Piece {
 
 	private static final long serialVersionUID = -2622469147543093706L;
 
-	private Queen(Color color) {
+	private Queen(ChessColor color) {
 		super(color, PieceType.QUEEN);
 	}
 
 	public static Queen createWhiteQueen() {
-		return new Queen(Color.WHITE);
+		return new Queen(ChessColor.WHITE);
 	}
 
 	public static Queen createBlackQueen() {
-		return new Queen(Color.BLACK);
+		return new Queen(ChessColor.BLACK);
 	}
 
 	@Override
@@ -36,7 +36,7 @@ public final class Queen extends Piece {
 	@Override
 	public String toString() {
 		String color;
-		color = (this.getColor() == Color.WHITE) ? "W" : "B";
+		color = (this.getColor() == ChessColor.WHITE) ? "W" : "B";
 		return "Q" + "(" + color + ")";
 	}
 }

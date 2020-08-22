@@ -3,22 +3,22 @@ package pieces;
 import java.util.ArrayList;
 
 import board.Position;
-import player.Color;
+import player.ChessColor;
 
 public final class Knight extends Piece {
 
 	private static final long serialVersionUID = -6116564816722111617L;
 
-	protected Knight(Color color) {
+	protected Knight(ChessColor color) {
 		super(color, PieceType.KNIGHT);
 	}
 	
 	public static Knight createWhiteKnight() {
-		return new Knight(Color.WHITE);
+		return new Knight(ChessColor.WHITE);
 	}
 	
 	public static Knight createBlackKnight() {
-		return new Knight(Color.BLACK);
+		return new Knight(ChessColor.BLACK);
 	}
 	
 	@Override
@@ -39,7 +39,7 @@ public final class Knight extends Piece {
 	@Override
 	public String toString() {
 		String color;
-		color = (this.getColor() == Color.WHITE) ? "W" : "B";
+		color = (this.getColor() == ChessColor.WHITE) ? "W" : "B";
 		return "Kn"+"("+color+")";
 	}
 }

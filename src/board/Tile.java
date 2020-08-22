@@ -3,7 +3,7 @@ package board;
 import java.io.Serializable;
 
 import pieces.Piece;
-import player.Color;
+import player.ChessColor;
 
 public class Tile implements Serializable {
 
@@ -40,12 +40,12 @@ public class Tile implements Serializable {
 		this.piece = piece;
 	}
 
-	public Color getColor() {
+	public static ChessColor getColor(Position position) {
 		int sum = position.getPositionAsInteger()[0] + position.getPositionAsInteger()[1];
 		if (sum % 2 == 0) {
-			return Color.BLACK;
+			return ChessColor.BLACK;
 		} else {
-			return Color.WHITE;
+			return ChessColor.WHITE;
 		}
 	}
 

@@ -14,15 +14,15 @@ public class Checkmate {
 	}
 	
 	public static boolean isWhiteKingCheckmate(Board board) {
-		return isKingCheckmate(Color.WHITE, board);
+		return isKingCheckmate(ChessColor.WHITE, board);
 	}
 	
 	public static boolean isBlackKingCheckmate(Board board) {
-		return isKingCheckmate(Color.BLACK, board);
+		return isKingCheckmate(ChessColor.BLACK, board);
 	}
 	
 	
-	private static boolean isKingCheckmate(Color color, Board board) {
+	private static boolean isKingCheckmate(ChessColor color, Board board) {
 		
 		boolean firstCondition = Check.isKingInCheck(color, board);
 		boolean secondCondition = kingCanNotBeSaved(color, board);
@@ -30,7 +30,7 @@ public class Checkmate {
 		return firstCondition && secondCondition;
 	}
 
-	private static boolean kingCanNotBeSaved(Color color, Board board) {
+	private static boolean kingCanNotBeSaved(ChessColor color, Board board) {
 		boolean kingCanNotBeSaved = true;
 		for(Tile tile: board) {
 			Piece piece = tile.getPiece();
@@ -52,7 +52,7 @@ public class Checkmate {
 			board2.setPiece(board.getPiece(position), endPosition);
 			board2.setPiece(null, position);
 			
-			Color pieceColor = board.getPiece(position).getColor();
+			ChessColor pieceColor = board.getPiece(position).getColor();
 			if(Check.isKingInCheck(pieceColor, board2) != true) {
 				pieceOnPositionCanSaveKing = true;
 				break;

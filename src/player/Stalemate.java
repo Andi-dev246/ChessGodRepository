@@ -15,14 +15,14 @@ public class Stalemate {
 	}
 
 	public static boolean isBlackKingStalemate(Board board) {
-		return isKingStalemate(board, Color.BLACK);
+		return isKingStalemate(board, ChessColor.BLACK);
 	}
 
 	public static boolean isWhiteKingStalemate(Board board) {
-		return isKingStalemate(board, Color.WHITE);
+		return isKingStalemate(board, ChessColor.WHITE);
 	}
 
-	private static boolean isKingStalemate(Board board, Color color) {
+	private static boolean isKingStalemate(Board board, ChessColor color) {
 
 		boolean firstCondition = !(Check.isKingInCheck(color, board));
 		boolean secondCondition = noMovePossible(board, color);
@@ -30,7 +30,7 @@ public class Stalemate {
 		return firstCondition && secondCondition;
 	}
 
-	private static boolean noMovePossible(Board board, Color color) {
+	private static boolean noMovePossible(Board board, ChessColor color) {
 		boolean noMovePossible = true;
 		List<Position> allLocations = getAllLocationsOfPiecesOfColor(color, board);
 		for (Position start : allLocations) {
@@ -45,7 +45,7 @@ public class Stalemate {
 		boolean canPieceMove = false;
 		List<Position> allReachablePositions = Checkmate.getAllReachablePositions(start, board);
 		Piece piece = board.getPiece(start);
-		Color color = piece.getColor();
+		ChessColor color = piece.getColor();
 		for(Position end: allReachablePositions) {
 			Board board2 = Board.createEmptyBoard();
 			board2.copy(board);
@@ -59,7 +59,7 @@ public class Stalemate {
 		return canPieceMove;
 	}
 
-	private static List<Position> getAllLocationsOfPiecesOfColor(Color color, Board board) {
+	private static List<Position> getAllLocationsOfPiecesOfColor(ChessColor color, Board board) {
 		List<Position> allLocations = new ArrayList<>();
 		for(Tile tile: board) {
 			if(board.getPiece(tile.getPosition()).getColor() == color) {

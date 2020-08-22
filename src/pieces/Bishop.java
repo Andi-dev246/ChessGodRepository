@@ -1,23 +1,23 @@
 package pieces;
 
 import board.Position;
-import player.Color;
+import player.ChessColor;
 
 public final class Bishop extends Piece {
 
 	
 	private static final long serialVersionUID = 7312820475446116544L;
 
-	private Bishop(Color color) {
+	private Bishop(ChessColor color) {
 		super(color, PieceType.BISHOP);
 	}
 	
 	public static Bishop createWhiteBishop() {
-		return new Bishop(Color.WHITE);
+		return new Bishop(ChessColor.WHITE);
 	}
 	
 	public static Bishop createBlackBishop() {
-		return new Bishop(Color.BLACK);
+		return new Bishop(ChessColor.BLACK);
 	}
 	@Override
 	public boolean isValidPath(Position start, Position end) {
@@ -32,7 +32,7 @@ public final class Bishop extends Piece {
 	@Override
 	public String toString() {
 		String color;
-		color = (this.getColor() == Color.WHITE) ? "W" : "B";
+		color = (this.getColor() == ChessColor.WHITE) ? "W" : "B";
 		return "B"+"("+color+")";
 	}
 }

@@ -11,18 +11,18 @@ import pieces.PieceType;
 
 public class Player {
 
-	private Color color;
+	private ChessColor color;
 
-	private Player(Color color) {
+	private Player(ChessColor color) {
 		this.color = color;
 	}
 
 	public static Player createWhitePlayer() {
-		return new Player(Color.WHITE);
+		return new Player(ChessColor.WHITE);
 	}
 
 	public static Player createBlackPlayer() {
-		return new Player(Color.BLACK);
+		return new Player(ChessColor.BLACK);
 	}
 	
 	public static boolean isValidMove(Board board, Position start, Position end) {
@@ -82,19 +82,15 @@ public class Player {
 		board2.setPiece(board.getPiece(start), end);
 		board2.setPiece(null, start);
 		
-		Color pieceColor = board.getPiece(start).getColor();
+		ChessColor pieceColor = board.getPiece(start).getColor();
 		if(Check.isKingInCheck(pieceColor, board2)) {
 			throw new InvalidMoveException("King is in Check.");
 		} else {
 			int i = board.getPiece(start).getNumberOfMoves() + 1;
-			int j = board.getCount() + 1;
 			board.getPiece(start).setNumberOfMoves(i);
-			board.setCount(j);
 			// copy the board2 to set the piece
 			board.copy(board2); 
-			
-			int count = board.getCount();
-			board.setCount(count +1);
+			board.addToHistory();
 		}
 	}
 	
@@ -112,7 +108,7 @@ public class Player {
 		
 	}
 
-	private static void exceptionPieceOnStartHasWrongColor(Board board, Position start, Color color) throws InvalidMoveException {
+	private static void exceptionPieceOnStartHasWrongColor(Board board, Position start, ChessColor color) throws InvalidMoveException {
 		if(board.getPiece(start).getColor() != color) {
 			throw new InvalidMoveException("The Player cannot move an enemy piece.");
 		}

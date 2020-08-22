@@ -69,6 +69,7 @@ public class MainGame {
 			}
 		   }
 		} while((Checkmate.isWhiteKingCheckmate(board) || Checkmate.isBlackKingCheckmate(board) || Stalemate.isWhiteKingStalemate(board) || Stalemate.isBlackKingStalemate(board)) == false);
+		board.printWhitePerspective();
 		System.out.println("The Game is over.");
 		input.close();
 	}
