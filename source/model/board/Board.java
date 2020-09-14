@@ -1,8 +1,8 @@
-package board;
+package model.board;
 
-import pieces.Piece;
+import model.pieces.Piece;
 
-public interface Board {
+public interface Board extends Iterable <Piece>{
 	
 	public Piece getPiece(Position position);
 	

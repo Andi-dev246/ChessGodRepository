@@ -1,15 +1,14 @@
 package gui;
 
-import java.awt.Color;
 import java.awt.Image;
 
 import javax.swing.ImageIcon;
 
-import board.Board;
-import board.Position;
-import pieces.Piece;
-import pieces.PieceType;
-import player.ChessColor;
+import model.board.Board;
+import model.board.Position;
+import model.pieces.Piece;
+import model.pieces.PieceType;
+import model.player.ChessColor;
 
 public class IconInitializer {
 	
@@ -28,11 +27,15 @@ public class IconInitializer {
 	private ImageIcon blackPawn = new ImageIcon(".\\res\\BlackPawn.png");
 	
 	private final Board board;
+	private int size = 100;
 	
 	public IconInitializer(Board board) {
 		this.board = board;
 	}
 	
+	public void setSize(int size) {
+		this.size = size;
+	}
 	
 	public ImageIcon getIconImagesFromBoard(Position position) {
 		ImageIcon pieceIcon = null;
@@ -100,7 +103,7 @@ public class IconInitializer {
 	private ImageIcon initImageIcon(ImageIcon ic) {
 		ImageIcon pieceIcon;
 		Image im = ic.getImage();
-		Image newIm = im.getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH);
+		Image newIm = im.getScaledInstance(size, size, java.awt.Image.SCALE_SMOOTH);
 		ImageIcon wk = new ImageIcon(newIm);
 		pieceIcon = wk;
 		return pieceIcon;

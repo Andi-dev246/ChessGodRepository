@@ -4,9 +4,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-import board.Position;
-import pieces.King;
-import pieces.Pawn;
+import model.board.Position;
+import model.pieces.King;
+import model.pieces.Pawn;
 
 class StalemateTest {
 

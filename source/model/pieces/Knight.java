@@ -1,11 +1,11 @@
-package pieces;
+package model.pieces;
 
 import java.util.Collections;
 import java.util.List;
 
-import board.Board;
-import board.Position;
-import player.ChessColor;
+import model.board.Board;
+import model.board.Position;
+import model.player.ChessColor;
 
 public final class Knight extends PieceImplementation {
 

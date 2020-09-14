@@ -1,14 +1,16 @@
-package pieces;
+package model.pieces;
 
-import board.Position;
 import exceptions.InvalidMoveException;
-import player.ChessColor;
+import model.board.Position;
+import model.player.ChessColor;
 
 public interface Piece {
 	
 	public PieceType getType();
 	
 	public ChessColor getColor();
+	
+	public Position getPosition();
 	
 	public boolean isValidMove(Position start, Position end);
 	

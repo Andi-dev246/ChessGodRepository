@@ -5,8 +5,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import board.*;
-import pieces.*;
+import model.board.Board;
+import model.board.BoardImplementation;
+import model.board.Position;
+import model.pieces.Piece;
+import model.pieces.PieceSetter;
+import model.pieces.PieceType;
 
 class KnightTests {
 

@@ -1,6 +1,10 @@
-package board;
+package model.board;
 
-import pieces.Piece;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+import model.pieces.Piece;
 
 public class BoardImplementation implements Board {
 	
@@ -38,4 +42,16 @@ public class BoardImplementation implements Board {
 		return boardHistory.getNumberOfTurns();
 	}
 
+	@Override
+	public Iterator<Piece> iterator() {
+		List<Piece> pieceList = new ArrayList<>();
+		for(Piece[] pieceRow: board) {
+			for(Piece piece: pieceRow) {
+				if(piece != null) {
+					pieceList.add(piece);
+				}
+			}
+		}
+		return pieceList.iterator();
+	}
 }

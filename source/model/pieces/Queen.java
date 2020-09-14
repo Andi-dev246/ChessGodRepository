@@ -1,8 +1,8 @@
-package pieces;
+package model.pieces;
 
-import board.Board;
-import board.Position;
-import player.ChessColor;
+import model.board.Board;
+import model.board.Position;
+import model.player.ChessColor;
 
 public final class Queen extends PieceImplementation {
 

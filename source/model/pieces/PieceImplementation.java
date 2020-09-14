@@ -1,12 +1,12 @@
-package pieces;
+package model.pieces;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import board.Board;
-import board.Position;
 import exceptions.InvalidMoveException;
-import player.ChessColor;
+import model.board.Board;
+import model.board.Position;
+import model.player.ChessColor;
 
 public abstract class PieceImplementation implements Piece {
 	
@@ -25,7 +25,7 @@ public abstract class PieceImplementation implements Piece {
 		this.board.setPiece(this, piecePosition);
 	}
 	
-	protected Position getPiecePosition() {
+	public Position getPosition() {
 		return piecePosition;
 	}
 

@@ -1,9 +1,9 @@
-package pieces;
+package model.pieces;
 
-import board.Board;
-import board.Position;
 import exceptions.InvalidPieceException;
-import player.ChessColor;
+import model.board.Board;
+import model.board.Position;
+import model.player.ChessColor;
 
 public class PieceSetter {
 	
