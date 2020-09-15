@@ -1,8 +1,11 @@
 package gui;
 
-public class ChessGodTextBox {
+import javax.swing.JFrame;
+
+public class ChessGodTextBox extends JFrame {
 	
 	public ChessGodTextBox(String text) {
-		// TODO Auto-generated constructor stub
+		
+		
 	}
 }

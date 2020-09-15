@@ -1,5 +1,7 @@
 package main;
 
+import controller.Controller;
+import controller.ControllerImplementation;
 import gui.ChessGodGUI;
 import gui.GraphicalUserInterface;
 import model.board.Board;
@@ -19,9 +21,12 @@ public class MainGame {
 		Player whitePlayer = PlayerImplementation.createWhitePlayer(board);
 		Player blackPlayer = PlayerImplementation.createBlackPlayer(board);
 		
-		GraphicalUserInterface chessGodGUI = new ChessGodGUI(board);
-		chessGodGUI.displayWhitePerspective();
+		Controller controller = new ControllerImplementation(board, whitePlayer, blackPlayer);
+		
+		GraphicalUserInterface gui = new ChessGodGUI(board, controller);
+		
 	}
+
 
 	private static Board setupBoard() {
 		

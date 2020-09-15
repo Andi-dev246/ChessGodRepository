@@ -1,7 +1,6 @@
 package controller;
 
 import exceptions.InvalidMoveException;
-import gui.ChessGodGUI;
 import gui.GraphicalUserInterface;
 import model.board.Board;
 import model.board.Position;
@@ -9,7 +8,6 @@ import model.player.Player;
 
 public class ControllerImplementation implements Controller {
 	
-	private final GraphicalUserInterface gui;
 	private final Board board;
 	private final Player firstPlayer;
 	private final Player secondPlayer;
@@ -19,9 +17,8 @@ public class ControllerImplementation implements Controller {
 	private Position secondInput;
 	
 	
-	public ControllerImplementation(ChessGodGUI chessGodGUI, Board board ,Player first, Player second) {
+	public ControllerImplementation(Board board ,Player first, Player second) {
 		this.board = board;
-		this.gui = chessGodGUI;
 		
 		firstPlayer = first;
 		secondPlayer = second;
@@ -31,22 +28,15 @@ public class ControllerImplementation implements Controller {
 
 
 	@Override
-	public void processInput(Position position) {
+	public void processInput(Position position) throws InvalidMoveException {
 		setInput(position);
 		if(firstInput != null && secondInput != null) {
-			if(board.getNumberOfTurns() % 2 == 0) {
-				try {
+			if((board.getNumberOfTurns() % 2) == 0) {
 					firstPlayer.movePiece(firstInput, secondInput);
-					gui.displayWhitePerspective();
-				} catch (InvalidMoveException e) {
-					gui.openTextBox(e.getMessage());
-				}
+					resetInput();
 			} else {
-				try {
 					secondPlayer.movePiece(firstInput, secondInput);
-				} catch (InvalidMoveException e) {
-					gui.openTextBox(e.getMessage());
-				}
+					resetInput();
 			}
 		}
 	}

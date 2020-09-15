@@ -31,7 +31,29 @@ public class PlayerImplementation implements Player {
 
 	@Override
 	public void movePiece(Position start, Position end) throws InvalidMoveException {
-		// TODO Auto-generated method stub
+		checkPreconditions(start);
+		Piece piece = board.getPiece(start);
+		if(isValidPlayerMove(start, end)) {
+			board.addToHistory();
+			piece.move(end);
+		} else {
+			throw new InvalidMoveException("This Move is Invalid.");
+		}
+	}
+
+	private boolean isValidPlayerMove(Position start, Position end) {
+		Piece piece = board.getPiece(start);
+		//TODO Check needs to be implemented as well and the condition needs to be checked.
+		return piece.isValidMove(start, end);
+	}
+
+	private void checkPreconditions(Position start) throws InvalidMoveException {
+		if(board.isEmpty(start)) {
+			throw new InvalidMoveException("The field is empty.");
+		}
+		if(board.getPiece(start).getColor() != color) {
+			throw new InvalidMoveException("The Piece has got the wrong color.");
+		}
 	}
 
 	@Override

@@ -1,10 +1,14 @@
 package gui;
 
+
+import javax.swing.JFrame;
+
+
 public interface GraphicalUserInterface {
 	
 	public void displayWhitePerspective();
 	
 	public void displayBlackPerspective();
 	
-	public void openTextBox(String text);
+	public JFrame openTextBox(String text);
 }

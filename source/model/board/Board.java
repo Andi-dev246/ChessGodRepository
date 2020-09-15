@@ -11,4 +11,6 @@ public interface Board extends Iterable <Piece>{
 	public boolean isEmpty(Position position);
 	
 	public int getNumberOfTurns();
+	
+	public void addToHistory();
 }
