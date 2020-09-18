@@ -83,4 +83,10 @@ public class BoardImplementation implements Board {
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "BoardImplementation [board=" + Arrays.deepToString(board) + "]";
+	}
+	
 }

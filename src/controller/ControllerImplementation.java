@@ -1,7 +1,6 @@
 package controller;
 
 import exceptions.InvalidMoveException;
-import gui.GraphicalUserInterface;
 import model.board.Board;
 import model.board.Position;
 import model.player.Player;
@@ -53,7 +52,7 @@ public class ControllerImplementation implements Controller {
 	}
 
 
-	private void resetInput() {
+	public void resetInput() {
 		firstInput = null;
 		secondInput = null;
 	}

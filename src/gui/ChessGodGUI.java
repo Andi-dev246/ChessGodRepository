@@ -69,6 +69,7 @@ public class ChessGodGUI extends JFrame implements GraphicalUserInterface {
 							controller.processInput(button.getPosition());
 							displayWhitePerspective();
 						} catch (InvalidMoveException e1) {
+							controller.resetInput();
 							e1.printStackTrace();
 						}
 					}

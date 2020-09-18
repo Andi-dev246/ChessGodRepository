@@ -25,6 +25,14 @@ public abstract class PieceImplementation implements Piece {
 		this.board.setPiece(this, piecePosition);
 	}
 	
+	public boolean getHasPieceBeenMoved() {
+		return hasPieceBeenMoved;
+	}
+	
+	public void setHasPieceBeenMoved(boolean hasPieceBeenMoved) {
+		this.hasPieceBeenMoved = hasPieceBeenMoved;
+	}
+	
 	public Position getPosition() {
 		return piecePosition;
 	}

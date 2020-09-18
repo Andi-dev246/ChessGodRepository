@@ -3,7 +3,7 @@ package model.player;
 import exceptions.InvalidMoveException;
 import model.board.Position;
 
-public interface Player {
+public interface Player extends Cloneable {
 	
 	public void movePiece(Position start, Position end) throws InvalidMoveException;
 	

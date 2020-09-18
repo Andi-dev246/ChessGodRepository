@@ -37,9 +37,9 @@ public final class Pawn extends PieceImplementation {
 		} else {
 			switch (this.getColor()) {
 			case BLACK:
-				return (rowDifference == -1) && (columnDifference == 1);
+				return (rowDifference == -1) && (Math.abs(columnDifference) == 1);
 			case WHITE:
-				return (rowDifference == 1) && (columnDifference == 1);
+				return (rowDifference == 1) && (Math.abs(columnDifference) == 1);
 			default:
 				return false;
 			}

@@ -12,6 +12,10 @@ public interface Piece {
 	
 	public Position getPosition();
 	
+	public boolean getHasPieceBeenMoved();
+	
+	public void setHasPieceBeenMoved(boolean hasPieceBeenMoved);
+	
 	public boolean isValidMove(Position start, Position end);
 	
 	public void move(Position end) throws InvalidMoveException;
