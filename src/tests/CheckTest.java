@@ -1,79 +1,79 @@
 package tests;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
+import model.board.Board;
+import model.board.BoardImplementation;
 import model.board.Position;
-import model.pieces.King;
-import model.pieces.Knight;
-import model.pieces.Pawn;
-import model.pieces.Queen;
+import model.pieces.PieceSetter;
+import model.pieces.PieceType;
+import model.player.Player;
+import model.player.PlayerImplementation;
 
 class CheckTest {
 	
-//	King whiteKing = King.createWhiteKing();
-//	King blackKing = King.createBlackKing();
-//	
-//	@Test
-//	void whiteKingInCheckTest() {
-//		Board_2 board = Board_2.createEmptyBoard();
-//		
-//		Knight blackKnight = Knight.createBlackKnight();
-//		
-//		board.setPiece(blackKnight, Position.createPositionFromString("e3"));
-//		board.setPiece(whiteKing, Position.createPositionFromString("g4"));
-//		
-//		assertTrue(Check.isWhiteKingInCheck(board));
-//	}
-//
-//	@Test
-//	void whiteKingIsNotInCheckTest() {
-//		Board_2 board = Board_2.createEmptyBoard();
-//		
-//		Knight blackKnight = Knight.createBlackKnight();
-//		
-//		board.setPiece(blackKnight, Position.createPositionFromString("e3"));
-//		board.setPiece(whiteKing, Position.createPositionFromString("g3"));
-//		
-//		assertFalse(Check.isWhiteKingInCheck(board));
-//	}
-//
-//	@Test
-//	void whiteKingIsNotInCheckTest2() {
-//		Board_2 board = Board_2.createEmptyBoard();
-//		
-//		Knight whiteKnight = Knight.createWhiteKnight();
-//		
-//		board.setPiece(whiteKnight, Position.createPositionFromString("e3"));
-//		board.setPiece(whiteKing, Position.createPositionFromString("g4"));
-//		
-//		assertFalse(Check.isWhiteKingInCheck(board));
-//	}
-//	
-//	@Test
-//	void whiteKingInCheckTest2() {
-//		Board_2 board = Board_2.createEmptyBoard();
-//		
-//		Queen blackQueen= Queen.createBlackQueen();
-//		
-//		board.setPiece(blackQueen, Position.createPositionFromString("f5"));
-//		board.setPiece(whiteKing, Position.createPositionFromString("h3"));
-//		
-//		assertTrue(Check.isWhiteKingInCheck(board));
-//	}
-//	
-//	@Test
-//	void whiteKingIsNotInCheckTest3() {
-//		Board_2 board = Board_2.createEmptyBoard();
-//		
-//		Queen blackQueen = Queen.createBlackQueen();
-//		Pawn whitePawn = Pawn.createWhitePawn();
-//		
-//		board.setPiece(blackQueen, Position.createPositionFromString("f5"));
-//		board.setPiece(whitePawn, Position.createPositionFromString("g4"));
-//		board.setPiece(whiteKing, Position.createPositionFromString("h3"));
-//		
-//		assertFalse(Check.isWhiteKingInCheck(board));
-//	}
+	@Test
+	void whiteKingInCheckTest() {
+		Board board = new BoardImplementation();
+		PieceSetter pieceSetter = new PieceSetter(board);
+		Player whitePlayer = PlayerImplementation.createWhitePlayer(board);
+		
+		pieceSetter.setBlackPiece(PieceType.KNIGHT, Position.createPositionFromString("e3"));
+		pieceSetter.setWhitePiece(PieceType.KING, Position.createPositionFromString("g4"));
+		
+		
+		assertTrue(whitePlayer.isInCheck());
+	}
+
+	@Test
+	void whiteKingIsNotInCheckTest() {
+		Board board = new BoardImplementation();
+		PieceSetter pieceSetter = new PieceSetter(board);
+		Player whitePlayer = PlayerImplementation.createWhitePlayer(board);
+		
+		pieceSetter.setBlackPiece(PieceType.KNIGHT, Position.createPositionFromString("e3"));
+		pieceSetter.setWhitePiece(PieceType.KING, Position.createPositionFromString("g3"));
+		
+		assertFalse(whitePlayer.isInCheck());
+	}
+
+	@Test
+	void whiteKingIsNotInCheckTest2() {
+		Board board = new BoardImplementation();
+		PieceSetter pieceSetter = new PieceSetter(board);
+		Player whitePlayer = PlayerImplementation.createWhitePlayer(board);
+		
+		pieceSetter.setWhitePiece(PieceType.KNIGHT, Position.createPositionFromString("e3"));
+		pieceSetter.setWhitePiece(PieceType.KING, Position.createPositionFromString("g3"));
+		
+		assertFalse(whitePlayer.isInCheck());
+	}
+	
+	@Test
+	void whiteKingInCheckTest2() {
+		Board board = new BoardImplementation();
+		PieceSetter pieceSetter = new PieceSetter(board);
+		Player whitePlayer = PlayerImplementation.createWhitePlayer(board);
+		
+		pieceSetter.setBlackPiece(PieceType.QUEEN, Position.createPositionFromString("f5"));
+		pieceSetter.setWhitePiece(PieceType.KING, Position.createPositionFromString("h3"));
+		
+		assertTrue(whitePlayer.isInCheck());
+	}
+	
+	@Test
+	void whiteKingIsNotInCheckTest3() {
+		Board board = new BoardImplementation();
+		PieceSetter pieceSetter = new PieceSetter(board);
+		Player whitePlayer = PlayerImplementation.createWhitePlayer(board);
+		
+		pieceSetter.setBlackPiece(PieceType.QUEEN, Position.createPositionFromString("f5"));
+		pieceSetter.setWhitePiece(PieceType.PAWN, Position.createPositionFromString("g43"));
+		pieceSetter.setWhitePiece(PieceType.KING, Position.createPositionFromString("h3"));
+		
+		assertFalse(whitePlayer.isInCheck());
+	}
 }

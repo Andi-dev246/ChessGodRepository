@@ -3,17 +3,15 @@ package gui;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-import controller.Controller;
-import exceptions.InvalidMoveException;
 import model.board.Board;
 import model.board.Position;
+import model.player.ChessColor;
 
 public class ChessGodGUI extends JFrame implements GraphicalUserInterface {
 
@@ -22,25 +20,24 @@ public class ChessGodGUI extends JFrame implements GraphicalUserInterface {
 	private ImageIcon blackRook = new ImageIcon(".\\res\\BlackRook.png");
 
 	// The associated Board
+	@SuppressWarnings("unused")
 	private final Board board;
-	private final Controller controller;
 
 	// private GUI Components
 	private Container content;
 	private ChessGodButton[][] tiles = new ChessGodButton[8][8];
 	private IconInitializer iconInitializer;
+	private ChessColor defaultDisplayedColorPerspective; 
 
-	public ChessGodGUI(Board board, Controller controller) {
+	public ChessGodGUI(Board board) {
 		// Initialize private GUI Components
 		this.board = board;
-		this.controller = controller;
 		iconInitializer = new IconInitializer(board);
 		content = getContentPane();
 		content.setLayout(new GridLayout(8, 8));
-			
-		//Add Buttons 
 		addButtons();
-		
+		defaultDisplayedColorPerspective = ChessColor.WHITE;
+			
 		// Set default Close Operation
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 
@@ -60,21 +57,6 @@ public class ChessGodGUI extends JFrame implements GraphicalUserInterface {
 		for(int i=0; i<8; i++) {
 			for(int j=0; j<8; j++) {
 				tiles[i][j] = new ChessGodButton(Position.createPositionFromInt(new int[] {i,j}));
-				tiles[i][j].addActionListener(new ActionListener() {
-					
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						ChessGodButton button = (ChessGodButton) e.getSource();
-						try {
-							controller.processInput(button.getPosition());
-							displayWhitePerspective();
-						} catch (InvalidMoveException e1) {
-							controller.resetInput();
-							e1.printStackTrace();
-						}
-					}
-				});
-				
 				content.add(tiles[i][j]);
 			}
 		}
@@ -90,8 +72,7 @@ public class ChessGodGUI extends JFrame implements GraphicalUserInterface {
 		}
 	}
 
-	@Override
-	public void displayWhitePerspective() {
+	private void displayWhitePerspective() {
 		for (int i = 0; i < 8; i++) {
 			for (int j = 0; j < 8; j++) {
 				Position position = Position.createPositionFromInt(new int[] { i, j });
@@ -104,14 +85,14 @@ public class ChessGodGUI extends JFrame implements GraphicalUserInterface {
 		}
 	}
 
-	@Override
-	public void displayBlackPerspective() {
+	
+	private void displayBlackPerspective() {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public JFrame openTextBox(String text) {
+	public JFrame displayText(String text) {
 		JFrame frame = new JFrame("InfoBox");
 	    final JLabel label = new JLabel(text);
 	    frame.getContentPane().add(label);
@@ -121,5 +102,25 @@ public class ChessGodGUI extends JFrame implements GraphicalUserInterface {
 	    frame.setVisible(true);
 	    
 	    return frame;
+	}
+
+	@Override
+	public void addActionListener(ActionListener actionListener, Position position) {
+		for(ChessGodButton[] tiles_row: tiles) {
+			for(ChessGodButton tile : tiles_row) {
+				if(tile.getPosition().equals(position)) {
+					tile.addActionListener(actionListener);
+				}
+			}
+		}
+	}
+
+	@Override
+	public void update() {
+		if(defaultDisplayedColorPerspective == ChessColor.BLACK) {
+			displayWhitePerspective();
+		} else {
+			displayWhitePerspective();
+		}
 	}
 }
