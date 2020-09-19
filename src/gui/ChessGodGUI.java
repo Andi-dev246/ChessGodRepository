@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.SwingConstants;
 
 import model.board.Board;
 import model.board.Position;
@@ -94,12 +95,15 @@ public class ChessGodGUI extends JFrame implements GraphicalUserInterface {
 	@Override
 	public JFrame displayText(String text) {
 		JFrame frame = new JFrame("InfoBox");
-	    final JLabel label = new JLabel(text);
+	    final JLabel label = new JLabel();
+	    label.setText(text);
+	    label.setHorizontalAlignment(SwingConstants.CENTER);
 	    frame.getContentPane().add(label);
 
-	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    frame.pack();
 	    frame.setVisible(true);
+	    frame.setLocationRelativeTo(this);
+	    frame.setSize(300,150);
 	    
 	    return frame;
 	}

@@ -34,8 +34,7 @@ public class ProcessorImplementation implements Processor {
 					try {
 						firstPlayer.movePiece(firstInput, secondInput);
 					} catch (InvalidMoveException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
+						gui.displayText(e.getMessage());
 					}
 					resetInput();
 					gui.update();
@@ -43,8 +42,7 @@ public class ProcessorImplementation implements Processor {
 					try {
 						secondPlayer.movePiece(firstInput, secondInput);
 					} catch (InvalidMoveException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
+						gui.displayText(e.getMessage());
 					}
 					resetInput();
 					gui.update();
