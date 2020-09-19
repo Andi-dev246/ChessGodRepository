@@ -35,17 +35,15 @@ public class Processor {
 					} catch (InvalidMoveException e) {
 						gui.displayText(e.getMessage());
 					}
-					resetInput();
-					gui.update();
 			} else {
 					try {
 						secondPlayer.movePiece(firstInput, secondInput);
 					} catch (InvalidMoveException e) {
 						gui.displayText(e.getMessage());
 					}
-					resetInput();
-					gui.update();
 			}
+			resetInput();
+			gui.update();
 		}
 	}
 

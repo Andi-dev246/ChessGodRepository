@@ -34,7 +34,7 @@ public class PlayerImplementation implements Player {
 	
 	@Override
 	public void movePiece(Position start, Position end) throws InvalidMoveException {
-		checkPreconditions(start);
+		checkExceptions(start, end);
 		Piece piece = board.getPiece(start);
 		if(isValidPlayerMove(start, end)) {
 			board.addToHistory();
@@ -44,10 +44,26 @@ public class PlayerImplementation implements Player {
 		}
 	}
 
+	private void checkExceptions(Position start, Position end) throws InvalidMoveException {
+		Piece piece = board.getPiece(start);
+		if(board.isEmpty(start)) {
+			throw new InvalidMoveException("The field is empty.");
+		}
+		if(board.getPiece(start).getColor() != color) {
+			throw new InvalidMoveException("The Piece has got the wrong color.");
+		}
+		if(isInCheck() && isPlayerInCheckWithPieceOnPosition(piece, end)) {
+			throw new InvalidMoveException("The Piece cannot move to the location. The King is in Check!");
+		}
+		if(isPlayerInCheckWithPieceOnPosition(piece, end)) {
+			throw new InvalidMoveException("The Piece cannot move to the location, because the King would be in Check!");
+		}
+	}
+
 	private boolean isValidPlayerMove(Position start, Position end) {
 		Piece piece = board.getPiece(start);
 		//TODO Check needs to be implemented as well and the condition needs to be checked.
-		return piece.isValidMove(start, end);
+		return piece.isValidMove(start, end) && !isPlayerInCheckWithPieceOnPosition(piece, end);
 	}
 
 
@@ -80,7 +96,7 @@ public class PlayerImplementation implements Player {
 		return false;
 	}
 	
-	private void checkPreconditions(Position start) throws InvalidMoveException {
+	private void checkExceptions(Position start) throws InvalidMoveException {
 		if(board.isEmpty(start)) {
 			throw new InvalidMoveException("The field is empty.");
 		}
@@ -104,7 +120,7 @@ public class PlayerImplementation implements Player {
 		boolean isThereAMoveThatResultsNotInCheckForThisPiece = false;
 		List<Position> allReachablePositions = getAllReachablePositions(piece);
 		for(Position position: allReachablePositions) {
-			if(isPlayerInCheckWithPieceOnPosition(piece, position)) {
+			if(!isPlayerInCheckWithPieceOnPosition(piece, position)) {
 				isThereAMoveThatResultsNotInCheckForThisPiece = true;
 				break;
 			}
@@ -128,8 +144,8 @@ public class PlayerImplementation implements Player {
 		} catch (InvalidMoveException e) {
 			e.printStackTrace();
 		}
-		//Check if the King is still in Check
-		boolean isPlayerInCheckWithPieceOnPosition = !this.isInCheck();
+		//Check if the King is in Check
+		boolean isPlayerInCheckWithPieceOnPosition = this.isInCheck();
 		
 		//Move the piece back on the initial Position
 		try {
@@ -139,7 +155,6 @@ public class PlayerImplementation implements Player {
 		} catch (InvalidMoveException e) {
 			e.printStackTrace();
 		}
-		
 		return isPlayerInCheckWithPieceOnPosition;
 	}
 

@@ -103,7 +103,7 @@ public class ChessGodGUI extends JFrame implements GraphicalUserInterface {
 	    frame.pack();
 	    frame.setVisible(true);
 	    frame.setLocationRelativeTo(this);
-	    frame.setSize(300,150);
+	    frame.setSize(450,150);
 	    
 	    return frame;
 	}
