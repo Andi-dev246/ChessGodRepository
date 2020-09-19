@@ -1,7 +1,7 @@
 package main;
 
 import controller.Processor;
-import controller.ProcessorImplementation;
+import controller.Processor;
 import gui.ChessGodGUI;
 import gui.GraphicalUserInterface;
 import model.board.Board;
@@ -24,7 +24,7 @@ public class MainGame {
 		
 		GraphicalUserInterface gui = new ChessGodGUI(board);
 		
-		Processor processor = new ProcessorImplementation(board);
+		Processor processor = new Processor(board);
 		processor.addFirstPlayer(whitePlayer);
 		processor.addSecondPlayer(blackPlayer);
 		processor.addGUI(gui);
