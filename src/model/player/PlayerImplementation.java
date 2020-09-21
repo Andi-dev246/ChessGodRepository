@@ -83,11 +83,7 @@ public class PlayerImplementation implements Player {
 
 	@Override
 	public boolean isCheckmate() {
-		
-		boolean firstCondition = this.isInCheck();
-		boolean secondCondition = everyMoveResultsInCheck();
-		
-		return firstCondition && secondCondition;
+		return this.isInCheck() && everyMoveResultsInCheck();
 	}
 	
 	@Override
@@ -96,15 +92,6 @@ public class PlayerImplementation implements Player {
 		return false;
 	}
 	
-	private void checkExceptions(Position start) throws InvalidMoveException {
-		if(board.isEmpty(start)) {
-			throw new InvalidMoveException("The field is empty.");
-		}
-		if(board.getPiece(start).getColor() != color) {
-			throw new InvalidMoveException("The Piece has got the wrong color.");
-		}
-	}
-
 	private boolean everyMoveResultsInCheck() {
 		boolean everyMoveResultsInCheck = true;
 		for(Piece piece: board) {
