@@ -1,15 +1,14 @@
 package main;
 
 import controller.Processor;
-import controller.Processor;
 import gui.ChessGodGUI;
 import gui.GraphicalUserInterface;
-import model.board.Board;
+import model.Board;
+import model.Player;
 import model.board.BoardImplementation;
 import model.board.Position;
 import model.pieces.PieceSetter;
 import model.pieces.PieceType;
-import model.player.Player;
 import model.player.PlayerImplementation;
 
 public class MainGame {

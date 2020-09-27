@@ -1,6 +1,6 @@
 package model.pieces;
 
-import model.board.Board;
+import model.Board;
 import model.board.Position;
 import model.player.ChessColor;
 

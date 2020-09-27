@@ -4,9 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import exceptions.InvalidMoveException;
-import model.board.Board;
+import model.Board;
+import model.Piece;
+import model.Player;
 import model.board.Position;
-import model.pieces.Piece;
 import model.pieces.PieceType;
 
 public class PlayerImplementation implements Player {

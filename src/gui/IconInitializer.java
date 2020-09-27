@@ -4,9 +4,9 @@ import java.awt.Image;
 
 import javax.swing.ImageIcon;
 
-import model.board.Board;
+import model.Board;
+import model.Piece;
 import model.board.Position;
-import model.pieces.Piece;
 import model.pieces.PieceType;
 import model.player.ChessColor;
 

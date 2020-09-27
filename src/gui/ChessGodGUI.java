@@ -10,7 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
-import model.board.Board;
+import model.Board;
 import model.board.Position;
 import model.player.ChessColor;
 
@@ -66,7 +66,7 @@ public class ChessGodGUI extends JFrame implements GraphicalUserInterface {
 	private void colorChessBoard() {
 		for (int i = 0; i < 8; i++) {
 			for (int j = 0; j < 8; j++) {
-				if ((i + j) % 2 == 0) {
+				if ((i + j) % 2 == 1) {
 					tiles[i][j].setBackground(colorDarkGrey);
 				}
 			}

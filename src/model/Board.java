@@ -1,6 +1,6 @@
-package model.board;
+package model;
 
-import model.pieces.Piece;
+import model.board.Position;
 
 public interface Board extends Iterable <Piece>{
 	

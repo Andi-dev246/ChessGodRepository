@@ -1,7 +1,8 @@
-package model.pieces;
+package model;
 
 import exceptions.InvalidMoveException;
 import model.board.Position;
+import model.pieces.PieceType;
 import model.player.ChessColor;
 
 public interface Piece {

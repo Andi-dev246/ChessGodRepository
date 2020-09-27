@@ -5,10 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import model.board.Board;
+import model.Board;
+import model.Piece;
 import model.board.BoardImplementation;
 import model.board.Position;
-import model.pieces.Piece;
 import model.pieces.PieceSetter;
 import model.pieces.PieceType;
 

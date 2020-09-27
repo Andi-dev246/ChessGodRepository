@@ -1,7 +1,8 @@
 package model.pieces;
 
 import exceptions.InvalidPieceException;
-import model.board.Board;
+import model.Board;
+import model.Piece;
 import model.board.Position;
 import model.player.ChessColor;
 

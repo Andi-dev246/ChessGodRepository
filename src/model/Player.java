@@ -1,7 +1,8 @@
-package model.player;
+package model;
 
 import exceptions.InvalidMoveException;
 import model.board.Position;
+import model.player.ChessColor;
 
 public interface Player extends Cloneable {
 	

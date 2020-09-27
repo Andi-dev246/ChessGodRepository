@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import exceptions.InvalidMoveException;
-import model.board.Board;
+import model.Board;
+import model.Piece;
 import model.board.Position;
 import model.player.ChessColor;
 

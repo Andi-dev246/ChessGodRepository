@@ -5,7 +5,8 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
-import model.pieces.Piece;
+import model.Board;
+import model.Piece;
 
 public class BoardImplementation implements Board {
 	

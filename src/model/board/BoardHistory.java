@@ -3,6 +3,8 @@ package model.board;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.Board;
+
 public class BoardHistory {
 	private List<Board> boardHistory;
 	

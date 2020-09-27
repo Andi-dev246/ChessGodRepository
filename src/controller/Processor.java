@@ -5,9 +5,9 @@ import java.awt.event.ActionListener;
 
 import exceptions.InvalidMoveException;
 import gui.GraphicalUserInterface;
-import model.board.Board;
+import model.Board;
+import model.Player;
 import model.board.Position;
-import model.player.Player;
 
 public class Processor {
 	
