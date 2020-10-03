@@ -32,14 +32,32 @@ public class Processor {
 			if((board.getNumberOfTurns() % 2) == 0) {
 					try {
 						firstPlayer.movePiece(firstInput, secondInput);
+						if(secondPlayer.isCheckmate()) {
+							gui.displayText("The Black Player is checkmate. White has won!");
+						}
 					} catch (InvalidMoveException e) {
-						gui.displayText(e.getMessage());
+						if(firstPlayer.isCheckmate()) {
+							gui.displayText("White is checkmate the Game is over.");
+						} else {
+							gui.displayText(e.getMessage());
+						}
+					} catch(Exception e) {
+						gui.displayText("An unknown Error has occured.");
 					}
 			} else {
 					try {
 						secondPlayer.movePiece(firstInput, secondInput);
+						if(firstPlayer.isCheckmate()) {
+							gui.displayText("The White Player is checkmate. Black has won!");
+						}
 					} catch (InvalidMoveException e) {
-						gui.displayText(e.getMessage());
+						if(secondPlayer.isCheckmate()) {
+							gui.displayText("Black is checkmate the Game is over.");
+						} else {
+							gui.displayText(e.getMessage());
+						}
+					} catch(Exception e) {
+						gui.displayText("An unknown Error has occured.");
 					}
 			}
 			resetInput();
