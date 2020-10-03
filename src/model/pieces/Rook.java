@@ -1,6 +1,7 @@
 package model.pieces;
 
 import model.Board;
+import model.Piece;
 import model.board.Position;
 import model.player.ChessColor;
 
@@ -18,5 +19,11 @@ public final class Rook extends PieceImplementation {
 		columnDifference = Math.abs(end.getPositionAsInteger()[1] - start.getPositionAsInteger()[1]);
 		
 		return (rowDifference == 0 || columnDifference == 0);
+	}
+	
+	@Override
+	public void cloneOnBoard(Board board) {
+		PieceImplementation clonedPiece = new Rook(board, getColor(), getPosition());
+		clonedPiece.setHasPieceBeenMoved(this.getHasPieceBeenMoved());
 	}
 }

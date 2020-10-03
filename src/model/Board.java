@@ -2,7 +2,7 @@ package model;
 
 import model.board.Position;
 
-public interface Board extends Iterable <Piece>{
+public interface Board extends Iterable <Piece>, Cloneable{
 	
 	public Piece getPiece(Position position);
 	
@@ -13,4 +13,6 @@ public interface Board extends Iterable <Piece>{
 	public int getNumberOfTurns();
 	
 	public void addToHistory();
+	
+	public Board clone();
 }

@@ -8,7 +8,7 @@ import java.util.List;
 import model.Board;
 import model.Piece;
 
-public class BoardImplementation implements Board {
+public class BoardImplementation implements Board, Cloneable {
 	
 	private Piece[][] board; 
 	private BoardHistory boardHistory;
@@ -43,6 +43,20 @@ public class BoardImplementation implements Board {
 	public int getNumberOfTurns() {
 		return boardHistory.getNumberOfTurns();
 	}
+	
+	@Override
+	public Board clone() {
+		Board clonedBoard = new BoardImplementation();
+		for(int i=0; i<8; i++) {
+			for(int j=0; j<8; j++) {
+				Position position = Position.createPositionFromInt(new int[]{i,j});
+				if(!isEmpty(position)) {
+					getPiece(position).cloneOnBoard(clonedBoard);
+				}
+			}
+		}
+		return clonedBoard;
+	}
 
 	@Override
 	public Iterator<Piece> iterator() {
@@ -62,7 +76,7 @@ public class BoardImplementation implements Board {
 		//TODO does not yet work as intended
 		boardHistory.addToHistory(this);
 	}
-
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

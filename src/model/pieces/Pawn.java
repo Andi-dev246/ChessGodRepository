@@ -45,4 +45,10 @@ public final class Pawn extends PieceImplementation {
 			}
 		}
 	}
+	
+	@Override
+	public void cloneOnBoard(Board board) {
+		PieceImplementation clonedPiece = new Pawn(board, getColor(), getPosition());
+		clonedPiece.setHasPieceBeenMoved(this.getHasPieceBeenMoved());
+	}
 }

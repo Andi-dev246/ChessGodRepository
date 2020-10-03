@@ -20,4 +20,10 @@ public final class Bishop extends PieceImplementation {
 		
 		return rowDifference == columnDifference;
 	}
+	
+	@Override
+	public void cloneOnBoard(Board board) {
+		PieceImplementation clonedPiece = new Bishop(board, getColor(), getPosition());
+		clonedPiece.setHasPieceBeenMoved(this.getHasPieceBeenMoved());
+	}
 }

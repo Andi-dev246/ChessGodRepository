@@ -24,4 +24,10 @@ public final class Queen extends PieceImplementation {
 		
 		return movesLikeARook || movesLikeABishop;
 	}
+	
+	@Override
+	public void cloneOnBoard(Board board) {
+		PieceImplementation clonedPiece = new Queen(board, getColor(), getPosition());
+		clonedPiece.setHasPieceBeenMoved(this.getHasPieceBeenMoved());
+	}
 }

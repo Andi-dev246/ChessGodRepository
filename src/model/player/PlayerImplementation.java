@@ -118,32 +118,19 @@ public class PlayerImplementation implements Player {
 
 	
 	private boolean isPlayerInCheckWithPieceOnPosition(Piece piece, Position position) {
-		//Get the initial Position and Data
-		Position start = piece.getPosition();
-		boolean hasPieceBeenMoved = piece.getHasPieceBeenMoved();
-		
-		// Get Piece on position in case that the piece beats a enemy piece there. Only Enemypieces are relevant because
-		// otherwise the isValidPath method would return false
-		Piece enemyPiece = board.getPiece(position);
+		//Clone the Board and Player
+		Board clonedBoard = board.clone();
+		Player clonedPlayer = new PlayerImplementation(clonedBoard, color);
+		Piece clonedPiece = clonedBoard.getPiece(piece.getPosition());
 		
 		// Move the piece to the reachable Position
 		try {
-			piece.move(position);
+			clonedPiece.move(position);
 		} catch (InvalidMoveException e) {
 			e.printStackTrace();
 		}
 		//Check if the King is in Check
-		boolean isPlayerInCheckWithPieceOnPosition = this.isInCheck();
-		
-		//Move the piece back on the initial Position
-		try {
-			piece.move(start);
-			piece.setHasPieceBeenMoved(hasPieceBeenMoved);
-			board.setPiece(enemyPiece,position);
-		} catch (InvalidMoveException e) {
-			e.printStackTrace();
-		}
-		return isPlayerInCheckWithPieceOnPosition;
+		return clonedPlayer.isInCheck();
 	}
 
 	private List<Position> getAllReachablePositions(Piece piece) {

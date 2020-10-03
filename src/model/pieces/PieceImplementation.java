@@ -26,11 +26,11 @@ public abstract class PieceImplementation implements Piece {
 		this.board.setPiece(this, piecePosition);
 	}
 	
-	public boolean getHasPieceBeenMoved() {
+	protected boolean getHasPieceBeenMoved() {
 		return hasPieceBeenMoved;
 	}
 	
-	public void setHasPieceBeenMoved(boolean hasPieceBeenMoved) {
+	protected void setHasPieceBeenMoved(boolean hasPieceBeenMoved) {
 		this.hasPieceBeenMoved = hasPieceBeenMoved;
 	}
 	
@@ -55,9 +55,6 @@ public abstract class PieceImplementation implements Piece {
 	protected List<Position> drawPath(Position start, Position end) {
 		List<Position> path = new ArrayList<Position>();
 		// Method should return a empty list if isValidPathOnBoard is false otherwise there can be a crash in Checkmate.isKingInCheck
-		if(this.isValidMoveOnBoardInPrinciple(start, end) == false) {
-			return path;
-		} else {
 			int pathLength, rowDirection, columnDirection, rowDifference, columnDifference;
 
 			rowDifference = end.getPositionAsInteger()[0] - start.getPositionAsInteger()[0];
@@ -75,16 +72,12 @@ public abstract class PieceImplementation implements Piece {
 				path.add(pathFinder);
 			}
 			return path;
-		}
 	}
 	
 	public boolean isValidMove(Position start, Position end) {
-		
-		boolean firstCondition = endPositionIsNotOccupiedByPieceOfSameColor(end);
-		boolean secondCondition = isValidMoveOnBoardInPrinciple(start, end);
-		boolean thirdCondition = isPathClear(start, end);
-		
-		return firstCondition && secondCondition && thirdCondition;
+		return endPositionIsNotOccupiedByPieceOfSameColor(end) 
+				&& isValidMoveOnBoardInPrinciple(start, end) 
+				&& isPathClear(start, end);
 	}
 	
 
@@ -121,7 +114,7 @@ public abstract class PieceImplementation implements Piece {
 			return board.getPiece(end).getColor() != this.getColor();
 		}
 	}
-
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

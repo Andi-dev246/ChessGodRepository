@@ -20,7 +20,6 @@ public class MainGame {
 		Player whitePlayer = PlayerImplementation.createWhitePlayer(board);
 		Player blackPlayer = PlayerImplementation.createBlackPlayer(board);
 		
-		
 		GraphicalUserInterface gui = new ChessGodGUI(board);
 		
 		Processor processor = new Processor(board);

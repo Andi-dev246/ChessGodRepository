@@ -28,4 +28,10 @@ public final class Knight extends PieceImplementation {
 	public List<Position> drawPath(Position start, Position end) {
 		return Collections.emptyList();
 	}
+	
+	@Override
+	public void cloneOnBoard(Board board) {
+		PieceImplementation clonedPiece = new Knight(board, getColor(), getPosition());
+		clonedPiece.setHasPieceBeenMoved(this.getHasPieceBeenMoved());
+	}
 }
