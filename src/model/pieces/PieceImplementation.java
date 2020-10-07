@@ -55,6 +55,9 @@ public abstract class PieceImplementation implements Piece {
 	protected List<Position> drawPath(Position start, Position end) {
 		List<Position> path = new ArrayList<Position>();
 		// Method should return a empty list if isValidPathOnBoard is false otherwise there can be a crash in Checkmate.isKingInCheck
+		if(!isValidMoveOnBoardInPrinciple(start, end)) {
+			return path;
+		}
 			int pathLength, rowDirection, columnDirection, rowDifference, columnDifference;
 
 			rowDifference = end.getPositionAsInteger()[0] - start.getPositionAsInteger()[0];
@@ -95,7 +98,7 @@ public abstract class PieceImplementation implements Piece {
 	}
 
 	private boolean isPathClear(Position start, Position end) {
-		List<Position> path = this.drawPath(start, end);
+		List<Position> path = drawPath(start, end);
 		
 		boolean isPathClear = true;
 		for(Position position: path) {

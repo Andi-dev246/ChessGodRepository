@@ -2,7 +2,6 @@ package model.pieces;
 
 import exceptions.InvalidMoveException;
 import model.Board;
-import model.Piece;
 import model.board.Position;
 import model.player.ChessColor;
 
@@ -56,6 +55,7 @@ public final class King extends PieceImplementation{
 	}
 
 	private boolean isPathClearAndSafeForRochade(Position start, Position end) {
+		//TODO method is not yet implemented
 		return true;
 	}
 
