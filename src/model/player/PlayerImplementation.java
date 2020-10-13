@@ -45,25 +45,9 @@ public class PlayerImplementation implements Player {
 		}
 	}
 
-	private void checkExceptions(Position start, Position end) throws InvalidMoveException {
-		Piece piece = board.getPiece(start);
-		if(board.isEmpty(start)) {
-			throw new InvalidMoveException("The field is empty.");
-		}
-		if(board.getPiece(start).getColor() != color) {
-			throw new InvalidMoveException("The Piece has got the wrong color.");
-		}
-		if(isInCheck() && isPlayerInCheckWithPieceOnPosition(piece, end)) {
-			throw new InvalidMoveException("The Piece cannot move to the location. The King is in Check!");
-		}
-		if(isPlayerInCheckWithPieceOnPosition(piece, end)) {
-			throw new InvalidMoveException("The Piece cannot move to the location, because the King would be in Check!");
-		}
-	}
 
 	private boolean isValidPlayerMove(Position start, Position end) {
 		Piece piece = board.getPiece(start);
-		//TODO Check needs to be implemented as well and the condition needs to be checked.
 		return piece.isValidMove(start, end) && !isPlayerInCheckWithPieceOnPosition(piece, end);
 	}
 
@@ -89,10 +73,24 @@ public class PlayerImplementation implements Player {
 	
 	@Override
 	public boolean isStalemate() {
-		// TODO Auto-generated method stub
-		return false;
+		return !isInCheck() && (everyMoveResultsInCheck() || isNoMovePossible());
 	}
 	
+	private boolean isNoMovePossible() {
+		boolean isNoMovePossible = true;
+		for(Piece piece: board) {
+			if(piece.getColor() == color && pieceCanMoveSomewhere(piece)) {
+				isNoMovePossible = false;
+			}
+		}
+		return isNoMovePossible;
+	}
+
+	private boolean pieceCanMoveSomewhere(Piece piece) {
+		List<Position> path = getAllReachablePositions(piece);
+		return (path.size() > 0);
+	}
+
 	private boolean everyMoveResultsInCheck() {
 		boolean everyMoveResultsInCheck = true;
 		for(Piece piece: board) {
@@ -102,6 +100,22 @@ public class PlayerImplementation implements Player {
 			}
 		}
 		return everyMoveResultsInCheck;
+	}
+
+	private void checkExceptions(Position start, Position end) throws InvalidMoveException {
+		Piece piece = board.getPiece(start);
+		if(board.isEmpty(start)) {
+			throw new InvalidMoveException("The field is empty.");
+		}
+		if(board.getPiece(start).getColor() != color) {
+			throw new InvalidMoveException("The Piece has got the wrong color.");
+		}
+		if(isInCheck() && isPlayerInCheckWithPieceOnPosition(piece, end)) {
+			throw new InvalidMoveException("The Piece cannot move to the location. The King is in Check!");
+		}
+		if(isPlayerInCheckWithPieceOnPosition(piece, end)) {
+			throw new InvalidMoveException("The Piece cannot move to the location, because the King would be in Check!");
+		}
 	}
 
 	private boolean isThereAMoveThatResultsNotInCheckForThisPiece(Piece piece) {

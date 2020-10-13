@@ -1,7 +1,10 @@
 package model.pieces;
 
+import java.util.List;
+
 import exceptions.InvalidMoveException;
 import model.Board;
+import model.Piece;
 import model.board.Position;
 import model.player.ChessColor;
 
@@ -55,8 +58,27 @@ public final class King extends PieceImplementation{
 	}
 
 	private boolean isPathClearAndSafeForRochade(Position start, Position end) {
-		//TODO method is not yet implemented
-		return true;
+		boolean isPathClearAndSafeForRochade = true;
+		PieceImplementation rook = (PieceImplementation) board.getPiece(getRookPositionInRochade(start, end));
+		List<Position> path = rook.drawPath(end, start);
+		path.add(end);
+		path.add(start);
+		for(Position position: path) {
+			if(enemyPieceCanReachPosition(position)) {
+				isPathClearAndSafeForRochade = false;
+			}
+		}
+		return isPathClearAndSafeForRochade;
+	}
+
+	private boolean enemyPieceCanReachPosition(Position position) {
+		boolean enemyPieceCanReachPosition = false;
+		for(Piece piece: board) {
+			if(piece.getColor() != this.getColor() && piece.isValidMove(piece.getPosition(), position)) {
+				enemyPieceCanReachPosition = true;
+			}
+		}
+		return enemyPieceCanReachPosition;
 	}
 
 	private boolean haveKingAndRockNotBeenMoved(Position start, Position end) {
