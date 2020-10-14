@@ -73,9 +73,20 @@ public class PlayerImplementation implements Player {
 	
 	@Override
 	public boolean isStalemate() {
-		return !isInCheck() && (everyMoveResultsInCheck() || isNoMovePossible());
+		return (!isInCheck() && (everyMoveResultsInCheck() || isNoMovePossible())) || sameBoardPositionThreeTimes();
 	}
 	
+	private boolean sameBoardPositionThreeTimes() {
+		boolean sameBoardPositionThreeTimes = false;
+		if(board.getNumberOfTurns() >= 12) {
+			int turn = board.getNumberOfTurns();
+			sameBoardPositionThreeTimes = (board.equals(board.getBoardInTurn(turn -4)))
+					&& (board.getBoardInTurn(turn -4).equals(board.getBoardInTurn(turn - 8)))
+					&& (board.getBoardInTurn(turn -8).equals(board.getBoardInTurn(turn - 12)));
+		}
+		return sameBoardPositionThreeTimes;
+	}
+
 	private boolean isNoMovePossible() {
 		boolean isNoMovePossible = true;
 		for(Piece piece: board) {
@@ -115,6 +126,9 @@ public class PlayerImplementation implements Player {
 		}
 		if(isPlayerInCheckWithPieceOnPosition(piece, end)) {
 			throw new InvalidMoveException("The Piece cannot move to the location, because the King would be in Check!");
+		}
+		if(isStalemate()) {
+			throw new InvalidMoveException("The Player is Stalemate the Game is over.");
 		}
 	}
 

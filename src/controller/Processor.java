@@ -34,6 +34,8 @@ public class Processor {
 						firstPlayer.movePiece(firstInput, secondInput);
 						if(secondPlayer.isCheckmate()) {
 							gui.displayText("The Black Player is checkmate. White has won!");
+						} else if(secondPlayer.isStalemate()) {
+							gui.displayText("Stalemate! The Game is over.");
 						}
 					} catch (InvalidMoveException e) {
 						if(firstPlayer.isCheckmate()) {
@@ -49,6 +51,8 @@ public class Processor {
 						secondPlayer.movePiece(firstInput, secondInput);
 						if(firstPlayer.isCheckmate()) {
 							gui.displayText("The White Player is checkmate. Black has won!");
+						} else if (firstPlayer.isStalemate()){
+							gui.displayText("Stalemate! The Game is over.");
 						}
 					} catch (InvalidMoveException e) {
 						if(secondPlayer.isCheckmate()) {

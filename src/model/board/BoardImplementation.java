@@ -57,7 +57,11 @@ public class BoardImplementation implements Board, Cloneable {
 		}
 		return clonedBoard;
 	}
-
+	
+	public Board getBoardInTurn(int i) {
+		return boardHistory.getBoardInTurn(i);
+	}
+	
 	@Override
 	public Iterator<Piece> iterator() {
 		List<Piece> pieceList = new ArrayList<>();
@@ -73,8 +77,7 @@ public class BoardImplementation implements Board, Cloneable {
 
 	@Override
 	public void addToHistory() {
-		//TODO does not yet work as intended
-		boardHistory.addToHistory(this);
+		boardHistory.addToHistory(clone());
 	}
 	
 	@Override

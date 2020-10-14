@@ -14,5 +14,7 @@ public interface Board extends Iterable <Piece>, Cloneable{
 	
 	public void addToHistory();
 	
+	public Board getBoardInTurn(int i);
+	
 	public Board clone();
 }
