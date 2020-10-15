@@ -1,8 +1,5 @@
 package controller;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import exceptions.InvalidMoveException;
 import gui.GraphicalUserInterface;
 import model.Board;
@@ -86,12 +83,7 @@ public class Processor {
 
 	public void addGUI(GraphicalUserInterface gui) {
 		this.gui = gui;
-		for(int i=0; i<8; i++) {
-			for(int j=0; j<8; j++) {
-				Position position = Position.createPositionFromInt(new int[] {i,j});
-				gui.addActionListener(new ButtonHandler(position), position);
-			}
-		}
+		gui.addProcessor(this);
 	}
 
 	public void addFirstPlayer(Player player) {
@@ -101,19 +93,5 @@ public class Processor {
 
 	public void addSecondPlayer(Player player) {
 		secondPlayer = player;
-	}
-	
-	private class ButtonHandler implements ActionListener {
-		
-		final Position position;
-		
-		public ButtonHandler(Position position) {
-			this.position = position;
-		}
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			processInput(position);
-		}
 	}
 }

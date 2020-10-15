@@ -26,7 +26,6 @@ public class MainGame {
 		processor.addFirstPlayer(whitePlayer);
 		processor.addSecondPlayer(blackPlayer);
 		processor.addGUI(gui);
-		
 	}
 
 

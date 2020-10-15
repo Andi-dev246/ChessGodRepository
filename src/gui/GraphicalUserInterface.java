@@ -1,18 +1,16 @@
 package gui;
 
 
-import java.awt.event.ActionListener;
-
 import javax.swing.JFrame;
 
-import model.board.Position;
+import controller.Processor;
 
 
 public interface GraphicalUserInterface {
 	
-	public void addActionListener(ActionListener actionListener, Position position);
-	
 	public void update();
 	
 	public JFrame displayText(String text);
+	
+	public void addProcessor(Processor processor);
 }

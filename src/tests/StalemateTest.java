@@ -8,8 +8,6 @@ import model.Board;
 import model.Player;
 import model.board.BoardImplementation;
 import model.board.Position;
-import model.pieces.King;
-import model.pieces.Pawn;
 import model.pieces.PieceSetter;
 import model.pieces.PieceType;
 import model.player.PlayerImplementation;
