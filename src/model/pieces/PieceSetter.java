@@ -53,4 +53,8 @@ public class PieceSetter {
 			throw new InvalidPieceException("This Piece does not exist.");
 		}
 	}
+	
+	public void setNull(Position position) {
+		board.setPiece(null, position);
+	}
 }

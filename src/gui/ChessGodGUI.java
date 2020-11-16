@@ -39,7 +39,7 @@ public class ChessGodGUI extends JFrame implements GraphicalUserInterface {
 	
 	//Menu
 	JMenuBar menuBar;
-	JMenu menuView, submenu;
+	JMenu menuView, menuGame;
 	JMenuItem menuItem;
 
 	public ChessGodGUI(Board board) {
@@ -74,7 +74,9 @@ public class ChessGodGUI extends JFrame implements GraphicalUserInterface {
 	private void createMenu() {
 		menuBar = new JMenuBar();
 		menuView = new JMenu("View");
+		menuGame = new JMenu("Game");
 		setJMenuBar(menuBar);
+		menuBar.add(menuGame);
 		menuBar.add(menuView);
 		
 		JMenuItem whitePerspective = new JMenuItem("White Perspective");
